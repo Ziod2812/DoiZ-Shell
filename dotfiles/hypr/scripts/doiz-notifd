@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -u
+
+svc_dir="${XDG_DATA_HOME:-$HOME/.local/share}/dbus-1/services"
+svc="$svc_dir/org.freedesktop.Notifications.service"
+want="[D-BUS Service]
+Name=org.freedesktop.Notifications
+Exec=$HOME/.config/hypr/scripts/doiz-notifd"
+
+if [ "$(cat "$svc" 2>/dev/null)" != "$want" ]; then
+    mkdir -p "$svc_dir"
+    printf '%s\n' "$want" > "$svc"
+fi
+
+if qs -c notifd ipc show >/dev/null 2>&1; then
+    exit 0
+fi
+
+bus() {
+    busctl --user call org.freedesktop.DBus /org/freedesktop/DBus org.freedesktop.DBus "$@" 2>/dev/null
+}
+
+owner=$(bus GetNameOwner s org.freedesktop.Notifications | awk '{gsub(/"/, "", $2); print $2}')
+if [ -n "$owner" ]; then
+    pid=$(bus GetConnectionUnixProcessID s "$owner" | awk '{print $2}')
+    [ -n "$pid" ] && kill "$pid" 2>/dev/null
+    for _ in $(seq 1 20); do
+        [ -z "$(bus GetNameOwner s org.freedesktop.Notifications)" ] && break
+        sleep 0.1
+    done
+fi
+
+exec qs -c notifd -n >/dev/null 2>&1

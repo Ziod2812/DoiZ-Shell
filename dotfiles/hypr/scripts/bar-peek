@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -u
+
+SECS="${1:-0.6}"
+OFF_FLAG="${XDG_STATE_HOME:-$HOME/.local/state}/doiz/bar-off"
+[ -e "$OFF_FLAG" ] && exit 0
+
+ms="$(awk -v s="$SECS" 'BEGIN { if (s + 0 < 0.1) s = 0.1; if (s + 0 > 10) s = 10; printf "%d", s * 1000 }')"
+exec qs -c bar ipc call bar peek "$ms" >/dev/null 2>&1

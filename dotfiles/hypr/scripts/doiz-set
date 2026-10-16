@@ -1,0 +1,365 @@
+#!/usr/bin/env python3
+import os
+import re
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+HOME = Path.home()
+CFG = Path(os.environ.get("XDG_CONFIG_HOME") or HOME / ".config")
+STATE = Path(os.environ.get("XDG_STATE_HOME") or HOME / ".local/state") / "doiz"
+ENV = CFG / "mycfg" / "doiz-settings.env"
+AUTOSTART = CFG / "mycfg" / "autostart.txt"
+DND = CFG / "mycfg" / "dnd"
+THEME = CFG / "theme" / "theme.conf"
+SCRIPTS = CFG / "hypr" / "scripts"
+
+DEFAULTS = {
+    "gaps_in": "5",
+    "gaps_out": "20",
+    "border_size": "3",
+    "rounding": "4",
+    "blur": "1",
+    "shadow": "0",
+    "animations": "1",
+    "inactive_opacity": "100",
+    "terminal": "kitty",
+    "browser": "helium-browser",
+    "file_manager": "thunar",
+    "natural_scroll": "1",
+    "tap_to_click": "1",
+    "sensitivity": "0",
+    "follow_mouse": "1",
+    "numlock": "0",
+    "kb_layout": "us",
+    "cava_pos": "center",
+    "cava_desk": "1",
+    "cava_desk_pos": "bottom",
+    "cava_desk_step": "0",
+    "media_popup": "1",
+}
+
+LIVE = {
+    "gaps_in": "general:gaps_in",
+    "gaps_out": "general:gaps_out",
+    "border_size": "general:border_size",
+    "rounding": "decoration:rounding",
+    "blur": "decoration:blur:enabled",
+    "shadow": "decoration:shadow:enabled",
+    "animations": "animations:enabled",
+    "natural_scroll": "input:touchpad:natural_scroll",
+    "tap_to_click": "input:touchpad:tap-to-click",
+    "follow_mouse": "input:follow_mouse",
+    "numlock": "input:numlock_by_default",
+    "kb_layout": "input:kb_layout",
+}
+
+APPS = {
+    "terminal": ["kitty", "alacritty", "foot", "wezterm", "konsole"],
+    "browser": ["helium-browser", "firefox", "chromium", "brave", "google-chrome-stable", "zen-browser"],
+    "file_manager": ["thunar", "nautilus", "dolphin", "pcmanfm", "nemo"],
+}
+
+
+def read_env(defaults=True):
+    data = dict(DEFAULTS) if defaults else {}
+    if ENV.exists():
+        for line in ENV.read_text().splitlines():
+            if "=" in line:
+                k, v = line.split("=", 1)
+                data[k.strip()] = v.strip()
+    return data
+
+
+def write_env(data):
+    ENV.parent.mkdir(parents=True, exist_ok=True)
+    ENV.write_text("".join(f"{k}={v}\n" for k, v in data.items()))
+
+
+def run(*args):
+    try:
+        return subprocess.run(list(args), text=True, capture_output=True, check=False)
+    except OSError:
+        return subprocess.CompletedProcess(list(args), 127, "", "")
+
+
+def live(key, value):
+    target = LIVE.get(key)
+    if key == "inactive_opacity":
+        value = f"{int(value) / 100:.2f}"
+        target = "decoration:inactive_opacity"
+    if key == "sensitivity":
+        value = f"{int(value) / 100:.2f}"
+        target = "input:sensitivity"
+    if not target:
+        return
+    if run("hyprctl", "keyword", target, str(value)).returncode != 0:
+        run("hyprctl", "reload")
+
+
+def pgrep(pattern):
+    return run("pgrep", "-f", pattern).returncode == 0
+
+
+def theme_dynamic():
+    if THEME.exists():
+        m = re.search(r"^\[dynamic\][^\[]*?^enabled\s*=\s*(\w+)", THEME.read_text(), re.M | re.S)
+        if m:
+            return m.group(1).lower() == "true"
+    return True
+
+
+def set_dynamic(on):
+    text = THEME.read_text()
+    text = re.sub(r"(\[dynamic\][^\[]*?^enabled\s*=\s*)\w+", lambda m: m.group(1) + ("true" if on else "false"), text, count=1, flags=re.M | re.S)
+    tmp = THEME.with_suffix(".conf.tmp")
+    tmp.write_text(text)
+    tmp.replace(THEME)
+
+
+def autostart_list():
+    if not AUTOSTART.exists():
+        return []
+    return [l.strip() for l in AUTOSTART.read_text().splitlines() if l.strip()]
+
+
+def label_for(action):
+    a = action.strip()
+    m = re.match(r"exec_script\(\"([^\"]+)\"(?:,\s*\"?([^\")]+)\"?)?\)", a)
+    if m:
+        return m.group(1).replace(".py", "").replace("_", " ") + (" " + m.group(2) if m.group(2) else "")
+    m = re.match(r"hl\.dsp\.exec_cmd\((.*)\)$", a)
+    if m:
+        inner = m.group(1).strip()
+        if inner.startswith("programs."):
+            return inner.split(".")[1].split(" ")[0]
+        s = inner.strip('"').split(" ")
+        return os.path.basename(s[0]) if s[0] else inner
+    m = re.match(r"hl\.dsp\.([\w\.]+)\(", a)
+    if m:
+        return m.group(1).replace(".", " ").replace("_", " ")
+    m = re.match(r"(workspace_action|move_workspace)\(", a)
+    if m:
+        return "go to workspace" if m.group(1) == "workspace_action" else "move to workspace"
+    m = re.match(r"exec_script\(", a)
+    return "action"
+
+
+def keys():
+    src = CFG / "hypr" / "config" / "keybinds.lua"
+    out = []
+    for line in src.read_text().splitlines():
+        m = re.match(r'^\s*bind\("([^"]+)",\s*(.*)\)\s*$', line)
+        if not m:
+            continue
+        key = m.group(1).replace(" + ", "+")
+        action = m.group(2)
+        if action.startswith("function"):
+            continue
+        depth = 0
+        end = len(action)
+        for i, ch in enumerate(action):
+            if ch == "(":
+                depth += 1
+            elif ch == ")":
+                depth -= 1
+                if depth == 0:
+                    end = i + 1
+                    break
+        action = action[:end]
+        out.append(f"{key}\t{label_for(action)}")
+    return out
+
+
+def grid_on():
+    pid = STATE / "auto-arrange-grid.pid"
+    try:
+        os.kill(int(pid.read_text().strip()), 0)
+        return True
+    except Exception:
+        return False
+
+
+def icons():
+    import glob
+    files = sorted(glob.glob("/usr/share/applications/*.desktop"))
+    if not files:
+        return {}
+    owners = {}
+    res = run("pacman", "-Qo", *files).stdout
+    for m in re.finditer(r"(\S+) is owned by (\S+) ", res):
+        owners[m.group(1)] = m.group(2)
+    found = {}
+    for f, pkg in owners.items():
+        try:
+            text = Path(f).read_text(errors="ignore")
+        except OSError:
+            continue
+        if re.search(r"^NoDisplay\s*=\s*true", text, re.M | re.I):
+            continue
+        m = re.search(r"^Icon\s*=\s*(.+)$", text, re.M)
+        if m and pkg not in found:
+            found[pkg] = m.group(1).strip()
+    return found
+
+
+def pkgs():
+    icon_map = icons()
+    foreign = set()
+    for line in run("pacman", "-Qm").stdout.splitlines():
+        if line.strip():
+            foreign.add(line.split()[0])
+    out = []
+    for line in run("pacman", "-Qe").stdout.splitlines():
+        parts = line.split()
+        if len(parts) >= 2:
+            out.append(f"{parts[0]}\t{parts[1]}\t{'aur' if parts[0] in foreign else 'repo'}\t{icon_map.get(parts[0], '')}")
+    return sorted(out)
+
+
+def state():
+    env = read_env()
+    lines = [f"{k}={v}" for k, v in env.items()]
+    dark = run("bash", str(SCRIPTS / "dark-mode.sh"), "status").stdout.strip() or "dark"
+    glass = run("python3", str(CFG / "theme/scripts/bar-glass.py"), "status").stdout.strip() or "off"
+    glass_level = run("python3", str(CFG / "theme/scripts/bar-glass.py"), "level").stdout.strip() or "50"
+    lines += [
+        f"dark={dark}",
+        f"glass={glass}",
+        f"glass_level={glass_level}",
+        f"bar={'1' if bar_running() else '0'}",
+        f"cava_desk_running={'1' if cavadesk_running() else '0'}",
+        f"dynamic={'1' if theme_dynamic() else '0'}",
+        f"infinite={'1' if pgrep('[i]nfinite_desktop_core.py 1') else '0'}",
+        f"grid={'1' if grid_on() else '0'}",
+        f"dnd={'1' if DND.exists() and DND.read_text().strip() == '1' else '0'}",
+    ]
+    for group, names in APPS.items():
+        for n in names:
+            lines.append(f"has_{n}={'1' if shutil.which(n) else '0'}")
+    return lines
+
+
+def cavadesk_running():
+    return run("qs", "-c", "cavadesk", "ipc", "show").returncode == 0
+
+
+def cavadesk_start():
+    try:
+        subprocess.Popen(["qs", "-c", "cavadesk", "-n"], stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL,
+                         stderr=subprocess.DEVNULL, start_new_session=True)
+    except OSError:
+        pass
+
+
+def cavadesk_pos(value, step="0"):
+    current = read_env().get("cava_desk_pos", "bottom")
+    new = ("top" if current == "bottom" else "bottom") if value == "toggle" else value
+    if new not in ("top", "bottom"):
+        return
+    env = read_env(False)
+    env["cava_desk_pos"] = new
+    env["cava_desk_step"] = step
+    env["cava_desk"] = "1"
+    write_env(env)
+    if cavadesk_running():
+        run("qs", "-c", "cavadesk", "ipc", "call", "cavadesk", "pos", new)
+    else:
+        cavadesk_start()
+
+
+def cavadesk_cycle():
+    env = read_env()
+    on = env.get("cava_desk", "1") == "1" and cavadesk_running()
+    pos = env.get("cava_desk_pos", "bottom")
+    if not on:
+        cavadesk_pos("bottom")
+    elif pos == "bottom":
+        cavadesk_pos("top")
+    else:
+        cavadesk_power("off")
+
+
+def cavadesk_power(value):
+    current = read_env().get("cava_desk", "1") == "1"
+    want = (not current) if value == "toggle" else value == "on"
+    env = read_env(False)
+    env["cava_desk"] = "1" if want else "0"
+    env["cava_desk_step"] = "0"
+    write_env(env)
+    if want and not cavadesk_running():
+        cavadesk_start()
+    elif not want:
+        run("qs", "kill", "-c", "cavadesk")
+
+
+def bar_running():
+    return run("qs", "-c", "bar", "ipc", "show").returncode == 0
+
+
+def main():
+    a = sys.argv[1:]
+    cmd = a[0] if a else "get"
+
+    if cmd == "get":
+        print("\n".join(state()))
+    elif cmd == "set" and len(a) == 3:
+        env = read_env(False)
+        env[a[1]] = a[2]
+        write_env(env)
+        live(a[1], a[2])
+        if a[1] in APPS:
+            run("hyprctl", "reload")
+    elif cmd == "dynamic" and len(a) == 2:
+        set_dynamic(a[1] == "on")
+    elif cmd == "bar" and len(a) == 2:
+        running = bar_running()
+        want = (not running) if a[1] == "toggle" else a[1] == "on"
+        off_flag = STATE / "bar-off"
+        if want:
+            off_flag.unlink(missing_ok=True)
+        else:
+            off_flag.parent.mkdir(parents=True, exist_ok=True)
+            off_flag.touch()
+        if want and not running:
+            subprocess.Popen([str(SCRIPTS / "doiz-bar")], stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL,
+                             stderr=subprocess.DEVNULL, start_new_session=True)
+        elif not want and running:
+            run("qs", "kill", "-c", "bar")
+    elif cmd == "cavadesk" and len(a) >= 2:
+        if a[1] == "cycle":
+            cavadesk_cycle()
+        elif a[1] == "pos" and len(a) == 3:
+            cavadesk_pos(a[2])
+        elif a[1] in ("on", "off", "toggle"):
+            cavadesk_power(a[1])
+    elif cmd == "dnd" and len(a) == 2:
+        DND.parent.mkdir(parents=True, exist_ok=True)
+        DND.write_text("1" if a[1] == "on" else "0")
+    elif cmd == "autostart":
+        sub = a[1] if len(a) > 1 else "list"
+        items = autostart_list()
+        if sub == "list":
+            print("\n".join(items))
+        else:
+            if sub == "add" and len(a) > 2 and a[2].strip():
+                items.append(a[2].strip())
+            elif sub == "del" and len(a) > 2 and a[2].isdigit() and int(a[2]) < len(items):
+                items.pop(int(a[2]))
+            AUTOSTART.parent.mkdir(parents=True, exist_ok=True)
+            AUTOSTART.write_text("".join(i + "\n" for i in items))
+    elif cmd == "pkgs":
+        print("\n".join(pkgs()))
+    elif cmd == "keys":
+        print("\n".join(keys()))
+    elif cmd == "reset":
+        if ENV.exists():
+            ENV.unlink()
+        run("hyprctl", "reload")
+    else:
+        print("usage: doiz-set get|set K V|dynamic on|off|bar on|off|toggle|cavadesk on|off|toggle|cavadesk pos top|bottom|toggle|cavadesk cycle|dnd on|off|autostart list|add CMD|del N|keys|reset", file=sys.stderr)
+        sys.exit(1)
+
+
+main()

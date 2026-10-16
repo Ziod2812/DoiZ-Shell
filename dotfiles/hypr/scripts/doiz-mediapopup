@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -u
+
+if ! qs -c mediapopup ipc show >/dev/null 2>&1; then
+    setsid -f qs -c mediapopup -n >/dev/null 2>&1 </dev/null
+    for _ in $(seq 1 50); do
+        qs -c mediapopup ipc show >/dev/null 2>&1 && break
+        sleep 0.1
+    done
+    sleep 0.3
+fi
+
+case "${1:-toggle}" in
+    here) qs -c mediapopup ipc call mediapopup here ;;
+    *) qs -c mediapopup ipc call mediapopup toggle ;;
+esac
+exit 0

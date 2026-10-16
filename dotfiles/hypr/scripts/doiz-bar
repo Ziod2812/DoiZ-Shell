@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -u
+
+STATE="${XDG_STATE_HOME:-$HOME/.local/state}/doiz"
+OFF_FLAG="$STATE/bar-off"
+
+exec 9>"${XDG_RUNTIME_DIR:-/tmp}/doiz-bar.lock"
+flock -n 9 || exit 0
+
+while :; do
+    if [ -e "$OFF_FLAG" ]; then
+        sleep 1
+        continue
+    fi
+    qs -c bar -n >/dev/null 2>&1 9>&-
+    sleep 1
+done

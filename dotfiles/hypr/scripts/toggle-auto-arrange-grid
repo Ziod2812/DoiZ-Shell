@@ -1,0 +1,177 @@
+#!/usr/bin/env python3
+import json
+import math
+import os
+import signal
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+STATE_DIR = Path(os.environ.get("XDG_STATE_HOME", Path.home() / ".local/state")) / "doiz"
+PID_FILE = STATE_DIR / "auto-arrange-grid.pid"
+LOG_FILE = STATE_DIR / "auto-arrange-grid.log"
+
+EXCLUDED = {
+    "quickshell", "dunst", "rofi", "wofi", "wlogout",
+    "hyprpaper", "mpvpaper", "xwaylandvideobridge"
+}
+
+def run(*args):
+    return subprocess.run(list(args), text=True, stdout=subprocess.PIPE,
+                          stderr=subprocess.PIPE, check=False)
+
+def hypr_json(command):
+    p = run("hyprctl", "-j", command)
+    if p.returncode != 0:
+        return []
+    try:
+        return json.loads(p.stdout)
+    except json.JSONDecodeError:
+        return []
+
+def dispatch_batch(commands):
+    if not commands:
+        return
+    run("hyprctl", "--batch", ";".join(commands))
+
+def current_workspace_id():
+    data = hypr_json("activeworkspace")
+    return int(data.get("id", 0)) if isinstance(data, dict) else 0
+
+def current_monitor():
+    data = hypr_json("monitors")
+    active = [m for m in data if m.get("focused")]
+    return active[0] if active else (data[0] if data else None)
+
+def eligible_windows():
+    ws = current_workspace_id()
+    result = []
+    for w in hypr_json("clients"):
+        if not w.get("mapped", True):
+            continue
+        if w.get("hidden", False):
+            continue
+        if int(w.get("workspace", {}).get("id", -1)) != ws:
+            continue
+        if w.get("fullscreen", 0):
+            continue
+        cls = (w.get("class") or w.get("initialClass") or "").lower()
+        if cls in EXCLUDED:
+            continue
+        addr = w.get("address")
+        if not addr:
+            continue
+        result.append(w)
+    return result
+
+def arrange():
+    monitor = current_monitor()
+    windows = eligible_windows()
+    if not monitor or not windows:
+        return
+
+    mx, my = int(monitor.get("x", 0)), int(monitor.get("y", 0))
+    mw, mh = int(monitor.get("width", 1920)), int(monitor.get("height", 1080))
+    reserved = monitor.get("reserved", [0, 0, 0, 0])
+    top = int(reserved[1]) if len(reserved) > 1 else 0
+    bottom = int(reserved[3]) if len(reserved) > 3 else 0
+    margin = 56
+    gap = 28
+    usable_w = max(900, mw - 2 * margin)
+    usable_h = max(600, mh - top - bottom - 2 * margin)
+
+    n = len(windows)
+    cols = max(1, math.ceil(math.sqrt(n * (usable_w / usable_h))))
+    rows = math.ceil(n / cols)
+    cell_w = max(360, int((usable_w - gap * (cols - 1)) / cols))
+    cell_h = max(240, int((usable_h - gap * (rows - 1)) / rows))
+
+    cell_w = min(cell_w, int((usable_w - gap * (cols - 1)) / cols))
+    cell_h = min(cell_h, int((usable_h - gap * (rows - 1)) / rows))
+
+    commands = []
+    for i, w in enumerate(windows):
+        row, col = divmod(i, cols)
+        x = mx + margin + col * (cell_w + gap)
+        y = my + top + margin + row * (cell_h + gap)
+        addr = w["address"]
+        commands.append(f"dispatch setfloating address:{addr}")
+        commands.append(f"dispatch resizewindowpixel exact {cell_w} {cell_h},address:{addr}")
+        commands.append(f"dispatch movewindowpixel exact {x} {y},address:{addr}")
+    dispatch_batch(commands)
+
+def read_pid():
+    try:
+        pid = int(PID_FILE.read_text().strip())
+        os.kill(pid, 0)
+        return pid
+    except Exception:
+        try:
+            PID_FILE.unlink()
+        except FileNotFoundError:
+            pass
+        return None
+
+def stop_existing():
+    pid = read_pid()
+    if pid:
+        try:
+            os.kill(pid, signal.SIGTERM)
+        except ProcessLookupError:
+            pass
+        for _ in range(20):
+            if read_pid() is None:
+                break
+            time.sleep(0.05)
+    try:
+        PID_FILE.unlink()
+    except FileNotFoundError:
+        pass
+
+def daemon():
+    STATE_DIR.mkdir(parents=True, exist_ok=True)
+    PID_FILE.write_text(str(os.getpid()))
+    try:
+        with LOG_FILE.open("a") as log:
+            log.write(f"auto-arrange-grid started pid={os.getpid()}\n")
+        last_signature = None
+        while True:
+            windows = eligible_windows()
+            signature = tuple((w.get("address"), w.get("workspace", {}).get("id")) for w in windows)
+            if signature != last_signature:
+                arrange()
+                last_signature = signature
+            time.sleep(0.55)
+    finally:
+        try:
+            PID_FILE.unlink()
+        except FileNotFoundError:
+            pass
+
+def notify(text):
+    run("notify-send", "DoiZ", text, "-t", "1600")
+
+def main():
+    existing = read_pid()
+    if existing:
+        stop_existing()
+        notify("Auto Arrange: OFF — free canvas")
+        return
+
+    arrange()
+    pid = os.fork()
+    if pid > 0:
+        STATE_DIR.mkdir(parents=True, exist_ok=True)
+        time.sleep(0.08)
+        notify("Auto Arrange: ON — grid layout")
+        return
+    os.setsid()
+    with open(os.devnull, "r") as r, open(os.devnull, "a") as w:
+        os.dup2(r.fileno(), 0)
+        os.dup2(w.fileno(), 1)
+        os.dup2(w.fileno(), 2)
+    daemon()
+
+if __name__ == "__main__":
+    main()

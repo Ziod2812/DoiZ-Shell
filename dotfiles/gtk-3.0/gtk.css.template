@@ -1,0 +1,3628 @@
+@define-color theme_selected_bg_color @ACCENT_ALT@;
+@define-color theme_selected_fg_color @BACKGROUND@;
+@define-color selected_bg_color @ACCENT_ALT@;
+@define-color selected_fg_color @BACKGROUND@;
+@define-color accent_bg_color @ACCENT_ALT@;
+@define-color accent_fg_color @BACKGROUND@;
+@define-color accent_color @ACCENT_ALT@;
+@define-color theme_unfocused_selected_bg_color @ACCENT_ALT@;
+@define-color theme_unfocused_selected_fg_color @BACKGROUND@;
+@define-color link_color @ACCENT_ALT@;
+@define-color borders @BORDER@;
+@define-color theme_bg_color @BACKGROUND@;
+@define-color theme_base_color @BACKGROUND@;
+@define-color theme_fg_color @FOREGROUND@;
+@define-color theme_text_color @FOREGROUND@;
+
+@define-color info_bg_color @BG_FIELD@;
+@define-color info_fg_color @FOREGROUND@;
+@define-color warning_bg_color @BG_FIELD@;
+@define-color warning_fg_color @FOREGROUND@;
+@define-color question_bg_color @BG_FIELD@;
+@define-color question_fg_color @FOREGROUND@;
+@define-color error_bg_color @BG_FIELD@;
+@define-color error_fg_color @FOREGROUND@;
+
+@define-color warning_bg_color_backdrop @BG_FIELD@;
+@define-color question_bg_color_backdrop @BG_FIELD@;
+@define-color info_bg_color_backdrop @BG_FIELD@;
+
+@define-color doiz_bg      @BACKGROUND@;
+@define-color doiz_fg      @FOREGROUND@;
+@define-color doiz_sub     @SUBTEXT@;
+@define-color doiz_muted   @MUTED@;
+@define-color doiz_accent  @ACCENT@;
+@define-color doiz_accent2 @ACCENT_ALT@;
+@define-color doiz_surface @SURFACE@;
+
+window.thunar,
+.thunar window,
+window.background.thunar {
+    background-color: @BG_WINDOW@;
+    color: @FOREGROUND@;
+    border-radius: 12px;
+    border: 1px solid @BORDER@;
+}
+
+.thunar,
+.thunar .background,
+.thunar paned,
+.thunar box {
+    background-color: transparent;
+    color: @FOREGROUND@;
+}
+
+.thunar menubar,
+.thunar menubar > menuitem {
+    background: transparent;
+    color: @FOREGROUND@;
+    border: none;
+    padding: 2px 6px;
+}
+.thunar menubar > menuitem:hover {
+    background-color: @ACCENT_ALPHA@;
+    border-radius: 8px;
+}
+
+menu, .popup menu, .thunar menu {
+    background-color: @BG_POPUP@;
+    color: @FOREGROUND@;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+    padding: 4px;
+}
+menu menuitem { border-radius: 4px; padding: 4px 8px; }
+menu menuitem:hover { background-color: @ACCENT_ALPHA@; }
+
+.thunar toolbar,
+.thunar .toolbar {
+    background: transparent;
+    border: none;
+    padding: 6px 10px;
+}
+.thunar toolbar button,
+.thunar toolbar .flat {
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    min-width: 30px;
+    min-height: 30px;
+    color: @FOREGROUND@;
+}
+.thunar toolbar button:hover { background-color: @ACCENT_ALPHA@; }
+.thunar toolbar button:active,
+.thunar toolbar button:checked { background-color: @ACCENT_STRONG@; }
+
+.thunar entry,
+.thunar .path-bar,
+.thunar toolbar entry {
+    background-color: @BG_FIELD@;
+    color: @FOREGROUND@;
+    caret-color: @FOREGROUND@;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+    padding: 8px 12px;
+    min-height: 26px;
+    box-shadow: none;
+}
+.thunar entry:focus { border-color: @ACCENT_ALT@; box-shadow: none; }
+
+.thunar .sidebar,
+.thunar .sidebar row,
+.thunar .sidebar treeview,
+.thunar .sidebar treeview.view {
+    background-color: @BG_CONTENT@;
+    color: @FOREGROUND@;
+}
+.thunar .sidebar { border-radius: 8px; margin: 0 0 0 6px; border: 1px solid @BORDER@; }
+.thunar .sidebar treeview.view:selected,
+.thunar .sidebar row:selected {
+    background-color: @BG_SELECT@;
+    color: @FOREGROUND@;
+    border-radius: 8px;
+}
+.thunar .sidebar treeview.view:hover {
+    background-color: @ACCENT_ALPHA@;
+    border-radius: 8px;
+}
+.thunar .sidebar treeview.view.header,
+.thunar .sidebar .dim-label { color: @FOREGROUND@; }
+
+.thunar scrolledwindow,
+.thunar .view,
+.thunar iconview,
+.thunar treeview.view {
+    background-color: @BG_CONTENT@;
+    color: @FOREGROUND@;
+    border-radius: 8px;
+}
+.thunar scrolledwindow { border: 1px solid @BORDER@; }
+.thunar iconview:selected,
+.thunar .view:selected,
+.thunar treeview.view:selected {
+    background-color: @BG_SELECT@;
+    color: @FOREGROUND@;
+    border-radius: 8px;
+}
+.thunar iconview .cell,
+.thunar iconview.view .cell {
+    border-radius: 8px;
+    border: 1px solid transparent;
+}
+.thunar iconview:hover,
+.thunar iconview .cell:hover,
+.thunar iconview.view .cell:hover {
+    background-color: @ACCENT_ALPHA@;
+    border-color: @BORDER@;
+    border-radius: 8px;
+}
+.thunar iconview:focus,
+.thunar iconview .cell:focus,
+.thunar iconview.view .cell:focus {
+    outline-color: @ACCENT_ALT@;
+}
+.thunar iconview:selected,
+.thunar iconview:selected:focus,
+.thunar iconview:selected:hover,
+.thunar iconview .cell:selected,
+.thunar iconview .cell:selected:focus,
+.thunar iconview.view .cell:selected {
+    background-color: @BG_SELECT@;
+    border-color: @ACCENT_ALT@;
+    color: @FOREGROUND@;
+    border-radius: 8px;
+}
+.thunar iconview:selected:backdrop,
+.thunar iconview .cell:selected:backdrop,
+.thunar iconview.view .cell:selected:backdrop {
+    background-color: @ACCENT_STRONG@;
+    border-color: @BORDER@;
+    color: @FOREGROUND@;
+}
+.thunar rubberband {
+    background-color: @ACCENT_ALPHA@;
+    border: 1px solid @ACCENT_ALT@;
+    border-radius: 4px;
+}
+
+.thunar statusbar {
+    border: 1px solid @BORDER@;
+    background-color: @BG_FIELD@;
+    color: @SUBTEXT@;
+    border-radius: 8px;
+    margin: 6px 10px 10px 10px;
+    padding: 6px 12px;
+}
+
+.thunar scrollbar { background: transparent; border: none; }
+.thunar scrollbar slider {
+    background-color: @MUTED_ALPHA@;
+    border-radius: 4px;
+    min-width: 6px;
+    min-height: 6px;
+    border: 2px solid transparent;
+}
+.thunar scrollbar slider:hover { background-color: @ACCENT_ALT@; }
+
+window.background.dialog,
+dialog.background,
+window.dialog {
+    background-color: @BG_WINDOW@;
+    color: @FOREGROUND@;
+    border-radius: 12px;
+    border: 1px solid @BORDER@;
+}
+
+window.background.dialog headerbar,
+dialog headerbar,
+window.dialog headerbar {
+    background: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+    color: @FOREGROUND@;
+    padding: 6px 10px;
+}
+
+window.background.dialog headerbar button,
+dialog headerbar button,
+window.dialog headerbar button {
+    background: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 8px;
+    box-shadow: none;
+    min-height: 30px;
+    padding: 4px 14px;
+    color: @FOREGROUND@;
+}
+window.background.dialog headerbar button:hover,
+dialog headerbar button:hover,
+window.dialog headerbar button:hover { background-color: @ACCENT_ALPHA@; }
+window.background.dialog headerbar button.suggested-action,
+dialog headerbar button.suggested-action,
+window.dialog headerbar button.suggested-action {
+    background-color: @ACCENT_ALT@;
+    color: @BACKGROUND@;
+}
+window.background.dialog headerbar entry,
+dialog headerbar entry,
+window.dialog headerbar entry {
+    background-color: @BG_FIELD@;
+    color: @FOREGROUND@;
+    border: none;
+    border-radius: 8px;
+    box-shadow: none;
+}
+
+filechooser,
+filechooserwidget,
+.filechooser,
+.dialog filechooser {
+    background-color: transparent;
+    color: @FOREGROUND@;
+}
+
+filechooser .sidebar,
+filechooser .sidebar treeview,
+filechooser .sidebar treeview.view {
+    background-color: transparent;
+    color: @FOREGROUND@;
+}
+filechooser .sidebar treeview.view:hover { background-color: @ACCENT_ALPHA@; border-radius: 8px; }
+filechooser .sidebar treeview.view:selected,
+filechooser .sidebar row:selected {
+    background-color: @BG_SELECT@;
+    color: @FOREGROUND@;
+    border-radius: 8px;
+}
+filechooser .sidebar .dim-label,
+filechooser .sidebar treeview.view.header { color: @SUBTEXT@; }
+
+filechooser .pathbar {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 2px 4px;
+}
+filechooser .pathbar button,
+filechooser .pathbar button.text-button {
+    background: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 8px;
+    box-shadow: none;
+    color: @FOREGROUND@;
+    min-height: 28px;
+    padding: 2px 12px;
+}
+filechooser .pathbar button:hover { background-color: @ACCENT_ALPHA@; }
+filechooser .pathbar button:checked,
+filechooser .pathbar button:active { background-color: @ACCENT_STRONG@; }
+
+filechooser .view,
+filechooser treeview.view,
+filechooser iconview,
+filechooser scrolledwindow {
+    background-color: @BG_CONTENT@;
+    color: @FOREGROUND@;
+    border-radius: 8px;
+}
+filechooser treeview.view:hover { background-color: @ACCENT_ALPHA@; }
+filechooser treeview.view:selected,
+filechooser iconview:selected {
+    background-color: @BG_SELECT@;
+    color: @FOREGROUND@;
+    border-radius: 8px;
+}
+filechooser treeview header button {
+    background: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+    color: @SUBTEXT@;
+    padding: 4px 8px;
+}
+filechooser treeview header button:hover { color: @FOREGROUND@; }
+
+filechooser entry,
+filechooser .location-entry,
+filechooser .path-bar entry {
+    background-color: @BG_FIELD@;
+    color: @FOREGROUND@;
+    caret-color: @FOREGROUND@;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+    padding: 8px 12px;
+    min-height: 26px;
+    box-shadow: none;
+}
+filechooser entry:focus { border-color: @ACCENT_ALT@; box-shadow: none; }
+
+filechooser combobox button,
+filechooser .combo button {
+    background-color: @BG_FIELD@;
+    background-image: none;
+    border: none;
+    border-radius: 8px;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+filechooser combobox button:hover { background-color: @ACCENT_ALPHA@; }
+
+filechooser .dialog-action-area button,
+filechooser button {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 8px;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+filechooser button:hover { background-color: @ACCENT_ALPHA@; }
+filechooser button.suggested-action { background-color: @ACCENT_ALT@;
+    color: @BACKGROUND@; }
+
+filechooser scrollbar { background: transparent; border: none; }
+filechooser scrollbar slider {
+    background-color: @MUTED_ALPHA@;
+    border-radius: 4px;
+    min-width: 6px;
+    min-height: 6px;
+    border: 2px solid transparent;
+}
+filechooser scrollbar slider:hover { background-color: @ACCENT_ALT@; }
+
+window.background.dialog *,
+window.background.csd.dialog *,
+dialog.background *,
+window.dialog * {
+    background-image: none;
+}
+
+window.background.dialog box,
+window.background.dialog paned,
+window.background.dialog .dialog-vbox,
+window.background.dialog .dialog-action-area,
+window.background.dialog .bottom-bar,
+window.background.dialog .horizontal,
+window.background.dialog .vertical,
+window.background.dialog viewport,
+window.background.dialog scrolledwindow,
+window.background.dialog filechooser box,
+window.background.dialog filechooser paned,
+window.background.dialog filechooser viewport,
+window.background.dialog filechooser .dialog-vbox,
+window.background.dialog filechooser .toolbar,
+window.background.dialog filechooser .bottom-bar,
+window.background.dialog filechooser .sidebar viewport,
+window.background.dialog filechooser .sidebar scrolledwindow,
+window.background.csd.dialog box,
+window.background.csd.dialog paned,
+window.background.csd.dialog viewport,
+window.background.csd.dialog scrolledwindow,
+window.background.csd.dialog filechooser box,
+window.background.csd.dialog filechooser paned,
+window.background.csd.dialog filechooser viewport,
+window.background.csd.dialog filechooser .bottom-bar,
+window.background.csd.dialog filechooser .toolbar,
+window.background.csd.dialog filechooser .sidebar viewport,
+window.background.csd.dialog filechooser .sidebar scrolledwindow,
+window.dialog box,
+window.dialog paned,
+window.dialog viewport,
+window.dialog filechooser box,
+window.dialog filechooser viewport,
+filechooser box,
+filechooser paned,
+filechooser viewport,
+filechooser .sidebar viewport,
+filechooser .bottom-bar,
+filechooser .dialog-action-area,
+filechooser .toolbar,
+filechooser .horizontal,
+filechooser .vertical {
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+}
+
+window.background.dialog,
+window.background.csd.dialog,
+dialog.background,
+window.dialog {
+    background-color: @BG_WINDOW@;
+}
+
+filechooser .view,
+filechooser treeview.view,
+filechooser iconview,
+filechooser scrolledwindow > viewport > .view {
+    background-color: @BG_CONTENT@;
+}
+
+window.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar) {
+    background-color: @BG_POPUP@;
+    color: @FOREGROUND@;
+    border-radius: 12px;
+    border: 1px solid @BORDER@;
+}
+window.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar) progressbar trough {
+    background-color: @BG_FIELD@;
+    border: none;
+    border-radius: 8px;
+    min-height: 6px;
+}
+window.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar) progressbar progress {
+    background-color: @ACCENT_ALT@;
+    background-image: none;
+    border: none;
+    border-radius: 8px;
+    min-height: 6px;
+}
+window.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar) progressbar text,
+window.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar) label {
+    color: @FOREGROUND@;
+}
+window.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar) button {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 8px;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+window.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar) button:hover {
+    background-color: @ACCENT_ALPHA@;
+}
+
+popover.background,
+popover.background.menu {
+    background-color: @BG_POPUP@;
+    color: @FOREGROUND@;
+    border: 1px solid @BORDER@;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+popover.background > box,
+popover.background > stack,
+popover.background > grid {
+    background-color: transparent;
+}
+popover.background modelbutton {
+    background-color: transparent;
+    background-image: none;
+    color: @FOREGROUND@;
+    border-radius: 8px;
+    padding: 4px 10px;
+    min-height: 26px;
+}
+popover.background modelbutton:hover { background-color: @ACCENT_ALPHA@; }
+popover.background modelbutton:disabled { color: @MUTED@; }
+popover.background separator { background-color: @MUTED_ALPHA@; min-height: 1px; }
+popover.background check,
+popover.background radio { color: @FOREGROUND@; }
+popover.background check:checked,
+popover.background radio:checked {
+    background-color: @ACCENT_ALT@;
+    background-image: none;
+    border-color: @ACCENT_ALT@;
+    color: @BACKGROUND@;
+}
+
+dialog.background entry,
+dialog.background spinbutton,
+dialog.background textview,
+dialog.background textview text,
+dialog.background entry text {
+    background-color: @BG_FIELD@;
+    background-image: none;
+    color: @FOREGROUND@;
+    caret-color: @FOREGROUND@;
+    border: none;
+    border-radius: 8px;
+    box-shadow: none;
+}
+dialog.background entry:focus,
+dialog.background spinbutton:focus-within { box-shadow: inset 0 0 0 1px @ACCENT_ALT@; }
+dialog.background spinbutton button {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+
+dialog.background treeview.view,
+dialog.background iconview,
+dialog.background list,
+dialog.background list row,
+dialog.background scrolledwindow {
+    background-color: @BG_CONTENT@;
+    background-image: none;
+    color: @FOREGROUND@;
+}
+dialog.background treeview.view:hover,
+dialog.background list row:hover { background-color: @ACCENT_ALPHA@; }
+dialog.background treeview.view:selected,
+dialog.background list row:selected,
+dialog.background iconview:selected {
+    background-color: @BG_SELECT@;
+    color: @FOREGROUND@;
+}
+
+dialog.background button {
+    background-image: none;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+dialog.background button:not(.suggested-action):not(.destructive-action) { background-color: @BG_FIELD@; border: none; border-radius: 8px; }
+dialog.background button:hover { background-color: @ACCENT_ALPHA@; }
+dialog.background button.suggested-action,
+dialog.background button.destructive-action {
+    background-color: @ACCENT_ALT@;
+    color: @BACKGROUND@;
+    border: none;
+    border-radius: 8px;
+}
+
+dialog.background switch {
+    background-color: @BG_FIELD@;
+    background-image: none;
+    border: none;
+    color: @FOREGROUND@;
+}
+dialog.background switch:checked { background-color: @ACCENT_STRONG@; }
+dialog.background switch slider {
+    background-color: @FOREGROUND@;
+    background-image: none;
+    border: none;
+}
+
+dialog.background scrollbar,
+dialog.background actionbar,
+dialog.background actionbar.background,
+dialog.background notebook > header,
+dialog.background notebook > header > tabs > tab {
+    background-color: transparent;
+    background-image: none;
+    border-color: transparent;
+    color: @FOREGROUND@;
+}
+dialog.background notebook > header > tabs > tab:checked {
+    background-color: @BG_SELECT@;
+    border-radius: 8px;
+}
+
+window.background.tooltip,
+tooltip.background {
+    background-color: @BG_POPUP@;
+    color: @FOREGROUND@;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+}
+tooltip label { color: @FOREGROUND@; }
+
+* {
+    transition: none;
+    animation: none;
+}
+
+.thunar .path-bar button,
+.thunar .path-bar button.text-button,
+.thunar .path-bar button.image-button {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 8px;
+    box-shadow: none;
+    color: @FOREGROUND@;
+    min-height: 26px;
+    padding: 2px 10px;
+}
+.thunar .path-bar button:hover { background-color: @ACCENT_ALPHA@; }
+.thunar .path-bar button:checked,
+.thunar .path-bar button:active { background-color: @ACCENT_STRONG@; }
+
+.thunar notebook > header,
+.thunar notebook > header > tabs > tab {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: @SUBTEXT@;
+}
+.thunar notebook > header > tabs > tab:checked {
+    background-color: @BG_SELECT@;
+    border-radius: 8px;
+    color: @FOREGROUND@;
+}
+
+.thunar paned > box:first-child,
+.thunar paned > box:last-child > scrolledwindow,
+.thunar paned > scrolledwindow {
+    background-color: @BG_CONTENT@;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+}
+.thunar paned > box:first-child { margin: 0 6px 0 0; }
+
+.thunar paned > box:first-child scrolledwindow,
+.thunar paned > box:first-child viewport,
+.thunar paned > box:first-child .sidebar,
+.thunar paned > box:first-child treeview.view,
+.thunar paned > box:first-child treeview.view row,
+.thunar scrolledwindow viewport,
+.thunar scrolledwindow treeview.view,
+.thunar scrolledwindow iconview,
+.thunar scrolledwindow .view {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+
+.thunar iconview:hover,
+.thunar treeview.view:hover { background-color: @ACCENT_ALPHA@; border-radius: 8px; }
+.thunar iconview:selected,
+.thunar treeview.view:selected,
+.thunar .sidebar row:selected {
+    background-color: @BG_SELECT@;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+}
+
+.thunar .path-bar,
+.thunar toolbar entry,
+.thunar entry {
+    background-color: @BG_FIELD@;
+    border: 1px solid @BORDER@;
+}
+.thunar statusbar { background-color: @BG_CONTENT@; border: 1px solid @BORDER@; }
+
+.thunar iconview:selected,
+.thunar iconview:selected:focus,
+.thunar iconview:selected:backdrop,
+.thunar iconview .cell:selected,
+.thunar iconview.view:selected,
+.thunar .view:selected,
+.thunar .view:selected:focus,
+.thunar .view:selected:backdrop,
+.thunar treeview.view:selected,
+.thunar treeview.view:selected:focus,
+.thunar treeview.view:selected:backdrop,
+.thunar .sidebar row:selected,
+.thunar .sidebar treeview.view:selected {
+    background-color: @BG_SELECT@;
+    background-image: none;
+    color: @FOREGROUND@;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+    box-shadow: none;
+    outline: none;
+}
+.thunar iconview:hover,
+.thunar iconview .cell:hover { background-color: @ACCENT_ALPHA@; border-radius: 8px; }
+.thunar iconview:focus,
+.thunar treeview.view:focus,
+.thunar *:focus { outline: none; outline-width: 0; }
+.thunar rubberband,
+.thunar .rubberband {
+    background-color: @ACCENT_ALPHA@;
+    border: 1px solid @ACCENT_ALT@;
+    border-radius: 4px;
+}
+
+dialog headerbar,
+window.dialog headerbar,
+window.dialog .titlebar,
+dialog.background .titlebar {
+    background-color: @BG_POPUP@;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+    border-radius: 12px 12px 0 0;
+    color: @FOREGROUND@;
+}
+dialog headerbar label { color: @SUBTEXT@; }
+window.dialog.background,
+dialog.background {
+    background-color: @BG_POPUP@;
+    border: 1px solid @BORDER@;
+    border-radius: 12px;
+}
+
+check, radio {
+    background-color: @BG_FIELD@;
+    background-image: none;
+    border: 1px solid @BORDER@;
+    color: @BACKGROUND@;
+    box-shadow: none;
+}
+check { border-radius: 4px; }
+check:checked, radio:checked, check:indeterminate {
+    background-color: @ACCENT_ALT@;
+    border-color: @ACCENT_ALT@;
+}
+switch { background-color: @BG_FIELD@; border: 1px solid @BORDER@; border-radius: 8px; }
+switch:checked { background-color: @ACCENT_ALT@; }
+switch slider { background-color: @FOREGROUND@; border-radius: 6px; border: none; }
+scale trough, progressbar trough { background-color: @BG_FIELD@; border: none; border-radius: 8px; min-height: 6px; }
+scale highlight, progressbar progress { background-color: @ACCENT_ALT@; border: none; border-radius: 8px; }
+scale slider { background-color: @FOREGROUND@; border: none; border-radius: 8px; }
+menu, .thunar menu { background-color: @BG_POPUP@; border: 1px solid @BORDER@; border-radius: 8px; }
+menu separator, .thunar separator { background-color: @MUTED_ALPHA@; min-height: 1px; }
+menuitem:hover, menu menuitem:hover { background-color: @BG_SELECT@; }
+button { box-shadow: none; background-image: none; }
+
+window.background.csd,
+window.background.solid-csd {
+    background-color: @BG_WINDOW@;
+    color: @FOREGROUND@;
+    border-radius: 12px;
+}
+window.background headerbar,
+window.background headerbar.titlebar {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+window.background headerbar button {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 8px;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+window.background headerbar button:hover { background-color: @ACCENT_ALPHA@; }
+window.background headerbar button:checked,
+window.background headerbar button:active { background-color: @BG_SELECT@; }
+
+combobox button,
+combobox button.combo,
+dialog.background combobox button {
+    background-color: @BG_FIELD@;
+    background-image: none;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+combobox button:hover { background-color: @ACCENT_ALPHA@; }
+combobox arrow, expander arrow { color: @SUBTEXT@; }
+combobox window.popup, combobox menu { background-color: @BG_POPUP@; border: 1px solid @BORDER@; border-radius: 8px; }
+
+expander title { color: @FOREGROUND@; }
+frame > border, frame border { border: 1px solid @BORDER@; border-radius: 8px; background: transparent; }
+frame > label { color: @SUBTEXT@; }
+
+infobar,
+infobar.info, infobar.warning, infobar.error, infobar.question {
+    background-color: @BG_FIELD@;
+    background-image: none;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+    color: @FOREGROUND@;
+}
+infobar label { color: @FOREGROUND@; }
+
+infobar,
+infobar:backdrop,
+infobar.info, infobar.warning, infobar.error, infobar.question,
+infobar.info:backdrop, infobar.warning:backdrop, infobar.error:backdrop, infobar.question:backdrop,
+window infobar:not(:backdrop),
+window infobar.info:not(:backdrop), window infobar.warning:not(:backdrop),
+window infobar.error:not(:backdrop), window infobar.question:not(:backdrop),
+window.thunar infobar, window.thunar infobar:backdrop,
+window.thunar infobar.warning, window.thunar infobar.question, window.thunar infobar.info {
+    background-color: @BG_FIELD@;
+    background-image: none;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+    box-shadow: none;
+    color: @FOREGROUND@;
+    margin: 4px 10px 0 10px;
+}
+infobar > revealer, infobar > revealer > box,
+infobar.warning > revealer > box, infobar.question > revealer > box,
+infobar.info > revealer > box, infobar.error > revealer > box,
+infobar > revealer > box:backdrop, infobar border,
+window infobar:not(:backdrop) > revealer > box {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+infobar button,
+infobar.warning button, infobar.question button, infobar.info button,
+window infobar:not(:backdrop) button {
+    background-color: @BG_CONTENT@;
+    background-image: none;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+    box-shadow: none;
+    text-shadow: none;
+    color: @FOREGROUND@;
+}
+infobar button:hover,
+window infobar:not(:backdrop) button:hover { background-color: @ACCENT_ALPHA@; }
+
+window:backdrop infobar,
+window:backdrop infobar.info, window:backdrop infobar.warning,
+window:backdrop infobar.error, window:backdrop infobar.question,
+window infobar:backdrop,
+window infobar.info:backdrop, window infobar.warning:backdrop,
+window infobar.error:backdrop, window infobar.question:backdrop,
+window.thunar:backdrop infobar, window.thunar:backdrop infobar.warning,
+window.thunar:backdrop infobar.question, window.thunar:backdrop infobar.info,
+window.background:backdrop infobar.warning, window.background.thunar:backdrop infobar.warning,
+window.background:backdrop infobar.question, window.background:backdrop infobar.info {
+    background-color: @BG_FIELD@;
+    background-image: none;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+    box-shadow: none;
+    color: @FOREGROUND@;
+    margin: 4px 10px 0 10px;
+}
+window:backdrop infobar > revealer, window:backdrop infobar > revealer > box,
+window infobar:backdrop > revealer, window infobar:backdrop > revealer > box,
+window infobar.warning:backdrop > revealer > box, window infobar.question:backdrop > revealer > box,
+window.thunar:backdrop infobar > revealer > box,
+window:backdrop infobar border, window infobar:backdrop border {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+window:backdrop infobar button, window infobar:backdrop button,
+window infobar.warning:backdrop button, window.thunar:backdrop infobar button {
+    background-color: @BG_CONTENT@;
+    background-image: none;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+    box-shadow: none;
+    text-shadow: none;
+    color: @FOREGROUND@;
+}
+window:backdrop infobar label, window infobar:backdrop label { color: @FOREGROUND@; }
+
+infobar button,
+infobar button:backdrop,
+infobar.warning button, infobar.warning button:backdrop,
+infobar.question button, infobar.question button:backdrop,
+window infobar:not(:backdrop) button,
+window infobar:backdrop button,
+window:backdrop infobar button {
+    background-color: @BG_FIELD@;
+    background-image: none;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+    box-shadow: none;
+    outline: none;
+    text-shadow: none;
+    color: @FOREGROUND@;
+    min-width: 0;
+    min-height: 0;
+    font-weight: 400;
+}
+infobar button:hover,
+infobar button:hover:backdrop,
+infobar.warning button:hover,
+infobar.warning button:hover:backdrop, infobar.question button:hover,
+window infobar:not(:backdrop) button:hover,
+window infobar:backdrop button:hover,
+window:backdrop infobar button:hover {
+    background-color: @ACCENT_ALPHA@;
+    background-image: none;
+    border: 1px solid @BORDER@;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+infobar button:active, infobar button:checked,
+infobar button:active:hover,
+infobar.warning button:active,
+window infobar:not(:backdrop) button:active,
+window infobar:backdrop button:active,
+window:backdrop infobar button:active {
+    background-color: @ACCENT_STRONG@;
+    background-image: none;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+infobar button:disabled, infobar button:disabled:backdrop,
+infobar button:backdrop:disabled,
+window infobar button:disabled, window infobar:backdrop button:disabled,
+window:backdrop infobar button:disabled,
+window.thunar infobar button:disabled, window.thunar:backdrop infobar button:disabled,
+window.background infobar button:disabled, window infobar box button:disabled,
+window infobar button.text-button:disabled {
+    background-color: @BG_FIELD@;
+    background-image: none;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+    box-shadow: none;
+    outline: none;
+    text-shadow: none;
+    color: @SUBTEXT@;
+}
+infobar button:disabled label, window infobar button:disabled label { color: @SUBTEXT@; }
+infobar button:focus, infobar button:focus:backdrop,
+infobar button.default, infobar button.suggested-action, infobar button.destructive-action,
+infobar button.default:backdrop, infobar button.suggested-action:backdrop, infobar button.destructive-action:backdrop,
+window infobar:not(:backdrop) button:focus, window infobar:backdrop button:focus,
+window:backdrop infobar button:focus,
+window infobar:not(:backdrop) button.suggested-action, window infobar:not(:backdrop) button.destructive-action,
+window infobar:backdrop button.suggested-action, window infobar:backdrop button.destructive-action {
+    background-color: @BG_FIELD@;
+    background-image: none;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+    box-shadow: none;
+    outline: none;
+    outline-width: 0;
+    text-shadow: none;
+    color: @FOREGROUND@;
+}
+infobar button:focus:hover, infobar button.suggested-action:hover, infobar button.destructive-action:hover,
+window infobar:not(:backdrop) button:focus:hover, window infobar:backdrop button:focus:hover,
+window:backdrop infobar button:focus:hover {
+    background-color: @ACCENT_ALPHA@;
+    background-image: none;
+    box-shadow: none;
+}
+infobar button:focus:active, infobar button.suggested-action:active, infobar button.destructive-action:active {
+    background-color: @ACCENT_STRONG@;
+    background-image: none;
+}
+
+window infobar button:not(:hover):not(:active):not(:disabled),
+window.thunar infobar button:not(:hover):not(:active):not(:disabled),
+window.background infobar button:not(:hover):not(:active):not(:disabled),
+window infobar box button:not(:hover):not(:active):not(:disabled),
+window infobar button.text-button:not(:hover):not(:active):not(:disabled) {
+    background-color: @BG_FIELD@;
+    background-image: none;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+    box-shadow: none;
+    outline: none;
+    outline-width: 0;
+    text-shadow: none;
+    color: @FOREGROUND@;
+}
+
+infobar:hover, infobar:hover:backdrop, window infobar:hover,
+infobar.warning:hover, infobar > revealer > box:hover {
+    background-color: @BG_FIELD@;
+    background-image: none;
+    box-shadow: none;
+}
+infobar > revealer > box:hover { background-color: transparent; }
+
+dialog.background label,
+window.background.dialog label { color: @FOREGROUND@; }
+dialog.background label.dim-label,
+dialog.background .dim-label { color: @SUBTEXT@; }
+
+treeview header button,
+.thunar treeview header button {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    border-bottom: 1px solid @BORDER@;
+    border-radius: 0;
+    box-shadow: none;
+    color: @SUBTEXT@;
+}
+treeview header button:hover { color: @FOREGROUND@; background-color: @ACCENT_ALPHA@; }
+treeview.view { border-color: @BORDER@; }
+treeview.view:selected,
+treeview.view:selected:focus { background-color: @BG_SELECT@; color: @FOREGROUND@; }
+
+spinner { color: @ACCENT_ALT@; }
+levelbar block.filled { background-color: @ACCENT_ALT@; border: none; border-radius: 4px; }
+levelbar block.empty { background-color: @BG_FIELD@; border: none; border-radius: 4px; }
+selection { background-color: @BG_SELECT@; color: @FOREGROUND@; }
+entry selection, textview text selection { background-color: @ACCENT_ALT@; color: @BACKGROUND@; }
+colorswatch, colorswatch overlay { border-radius: 8px; }
+
+filechooser placessidebar,
+filechooser placessidebar list,
+filechooser placessidebar viewport,
+filechooser placessidebar scrolledwindow {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+filechooser placessidebar row {
+    background-color: transparent;
+    background-image: none;
+    color: @FOREGROUND@;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    margin: 2px 6px;
+    padding: 0 6px;
+    min-height: 34px;
+    box-shadow: none;
+}
+filechooser placessidebar row:hover { background-color: @ACCENT_ALPHA@; }
+filechooser placessidebar row:selected,
+filechooser placessidebar row:selected:focus,
+filechooser placessidebar row:selected:backdrop {
+    background-color: @BG_SELECT@;
+    border-color: @BORDER@;
+    color: @FOREGROUND@;
+}
+filechooser placessidebar row separator,
+filechooser placessidebar separator {
+    background-color: @MUTED_ALPHA@;
+    min-height: 1px;
+    margin: 4px 12px;
+}
+filechooser placessidebar row image,
+filechooser placessidebar row label { color: @FOREGROUND@; }
+filechooser placessidebar row.sidebar-placeholder-row { background-color: @ACCENT_ALPHA@; border-radius: 8px; }
+
+filechooser placessidebar { margin: 0 6px 0 0; }
+filechooser paned > box:first-child,
+filechooser box > placessidebar {
+    background-color: @BG_CONTENT@;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+}
+
+filechooser .path-bar button,
+filechooser .path-bar button.text-button,
+filechooser .path-bar button.image-button,
+filechooser box.linked.path-bar > button {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 8px;
+    box-shadow: none;
+    color: @FOREGROUND@;
+    min-height: 28px;
+    padding: 2px 12px;
+    margin: 0 2px;
+}
+filechooser .path-bar button:hover { background-color: @ACCENT_ALPHA@; }
+filechooser .path-bar button:checked,
+filechooser .path-bar button:active { background-color: @ACCENT_STRONG@; }
+
+dialog headerbar button.suggested-action,
+window.dialog headerbar button.suggested-action,
+window.background.dialog headerbar button.suggested-action,
+window.background.dialog headerbar button.suggested-action:backdrop,
+window.background.dialog headerbar button.suggested-action:focus,
+filechooser button.suggested-action,
+filechooser button.suggested-action:backdrop {
+    background-color: @ACCENT_ALT@;
+    background-image: none;
+    color: @BACKGROUND@;
+    font-weight: 600;
+    opacity: 1;
+    text-shadow: none;
+}
+window.background.dialog headerbar button.suggested-action:hover { background-color: @ACCENT@; }
+window.background.dialog headerbar button.suggested-action:disabled,
+filechooser button.suggested-action:disabled {
+    background-color: @BG_SELECT@;
+    color: @SUBTEXT@;
+}
+
+window.background.dialog filechooser placessidebar,
+dialog.background filechooser placessidebar {
+    background-color: @BG_CONTENT@;
+    background-image: none;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+    margin: 0 6px 0 0;
+    padding: 4px 0;
+    box-shadow: none;
+}
+window.background.dialog filechooser placessidebar list,
+window.background.dialog filechooser placessidebar viewport,
+window.background.dialog filechooser placessidebar scrolledwindow,
+dialog.background filechooser placessidebar list,
+dialog.background filechooser placessidebar viewport,
+dialog.background filechooser placessidebar scrolledwindow {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+window.background.dialog filechooser placessidebar list row,
+dialog.background filechooser placessidebar list row {
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    margin: 1px 6px;
+    padding: 0 6px;
+    min-height: 32px;
+    color: @FOREGROUND@;
+    box-shadow: none;
+}
+window.background.dialog filechooser placessidebar list row:hover,
+dialog.background filechooser placessidebar list row:hover {
+    background-color: @ACCENT_ALPHA@;
+}
+window.background.dialog filechooser placessidebar list row:selected,
+window.background.dialog filechooser placessidebar list row:selected:focus,
+window.background.dialog filechooser placessidebar list row:selected:backdrop,
+dialog.background filechooser placessidebar list row:selected,
+dialog.background filechooser placessidebar list row:selected:focus,
+dialog.background filechooser placessidebar list row:selected:backdrop {
+    background-color: @BG_SELECT@;
+    border-color: @BORDER@;
+    color: @FOREGROUND@;
+}
+
+window.background.dialog filechooser .path-bar button:not(.suggested-action),
+window.background.dialog filechooser box.linked > button:not(.suggested-action),
+dialog.background filechooser .path-bar button:not(.suggested-action),
+dialog.background filechooser box.linked > button:not(.suggested-action) {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 8px;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+window.background.dialog filechooser .path-bar button:not(.suggested-action):hover,
+window.background.dialog filechooser box.linked > button:not(.suggested-action):hover,
+dialog.background filechooser .path-bar button:not(.suggested-action):hover,
+dialog.background filechooser box.linked > button:not(.suggested-action):hover {
+    background-color: @ACCENT_ALPHA@;
+}
+window.background.dialog filechooser .path-bar button:checked,
+window.background.dialog filechooser .path-bar button:active,
+dialog.background filechooser .path-bar button:checked,
+dialog.background filechooser .path-bar button:active {
+    background-color: @ACCENT_STRONG@;
+}
+
+.thunar notebook,
+.thunar notebook > stack,
+.thunar notebook > stack > box,
+.thunar notebook > stack > paned,
+.thunar notebook > stack > scrolledwindow,
+.thunar notebook > stack > scrolledwindow > viewport {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+
+.thunar notebook > stack > paned > box:first-child,
+.thunar notebook > stack > paned > box:last-child > scrolledwindow,
+.thunar notebook > stack > scrolledwindow {
+    background-color: @BG_CONTENT@;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+}
+
+.thunar notebook > header {
+    margin: 0 6px 6px 6px;
+}
+
+window.background.dialog,
+window.background.csd.dialog,
+dialog.background,
+window.dialog {
+    background-color: @BG_POPUP@;
+}
+
+window.background.dialog entry,
+dialog.background entry {
+    background-color: @BG_FIELD@;
+    color: @FOREGROUND@;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+    box-shadow: none;
+}
+
+window.background.dialog button,
+dialog.background button {
+    background-color: @BG_FIELD@;
+    background-image: none;
+    color: @FOREGROUND@;
+    border: none;
+    border-radius: 8px;
+    box-shadow: none;
+}
+window.background.dialog button:hover,
+dialog.background button:hover { background-color: @ACCENT_ALPHA@; }
+window.background.dialog button.suggested-action,
+dialog.background button.suggested-action {
+    background-color: @ACCENT_ALT@;
+    color: @BACKGROUND@;
+}
+
+window.background.dialog checkbutton check,
+dialog.background checkbutton check {
+    background-color: @BG_FIELD@;
+    background-image: none;
+    border: 1px solid @BORDER@;
+    border-radius: 4px;
+    color: @BACKGROUND@;
+    box-shadow: none;
+}
+window.background.dialog checkbutton check:checked,
+dialog.background checkbutton check:checked {
+    background-color: @ACCENT_ALT@;
+    border-color: @ACCENT_ALT@;
+}
+
+.thunar notebook > stack:not(:only-child),
+.thunar notebook > header ~ stack,
+.thunar notebook > header.top ~ stack,
+.thunar notebook.frame,
+.thunar notebook.frame > stack {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+
+.thunar notebook > header.top,
+.thunar notebook > header.top > tabs,
+.thunar notebook > header.top > tabs > tab {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 8px;
+    box-shadow: none;
+    color: @SUBTEXT@;
+}
+.thunar notebook > header.top > tabs > tab:hover {
+    background-color: @ACCENT_ALPHA@;
+}
+.thunar notebook > header.top > tabs > tab:checked,
+.thunar notebook > header.top > tabs > tab:checked:hover {
+    background-color: @BG_SELECT@;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+.thunar notebook > header.top > tabs > tab button {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+    color: @SUBTEXT@;
+}
+
+@define-color theme_unfocused_bg_color @BG_WINDOW@;
+@define-color theme_unfocused_base_color @BG_CONTENT@;
+@define-color theme_unfocused_fg_color @FOREGROUND@;
+@define-color theme_unfocused_text_color @FOREGROUND@;
+@define-color unfocused_borders @BORDER@;
+
+window.thunar:backdrop,
+window.background.thunar:backdrop {
+    background-color: @BG_WINDOW@;
+    color: @FOREGROUND@;
+    border: 1px solid @BORDER@;
+    border-radius: 12px;
+}
+
+window.background.dialog:backdrop,
+window.background.csd.dialog:backdrop,
+dialog.background:backdrop,
+window.dialog:backdrop {
+    background-color: @BG_POPUP@;
+    color: @FOREGROUND@;
+    border: 1px solid @BORDER@;
+    border-radius: 12px;
+}
+
+window.background.dialog headerbar:backdrop,
+dialog headerbar:backdrop,
+window.dialog headerbar:backdrop,
+dialog.background .titlebar:backdrop {
+    background-color: @BG_POPUP@;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+
+window.background.dialog entry:backdrop,
+dialog.background entry:backdrop,
+.thunar entry:backdrop,
+.thunar .path-bar:backdrop,
+.thunar toolbar entry:backdrop {
+    background-color: @BG_FIELD@;
+    color: @FOREGROUND@;
+    border: 1px solid @BORDER@;
+    box-shadow: none;
+}
+
+window.background.dialog button:backdrop,
+dialog.background button:backdrop {
+    background-color: @BG_FIELD@;
+    background-image: none;
+    color: @FOREGROUND@;
+    border: none;
+    box-shadow: none;
+}
+window.background.dialog button.suggested-action:backdrop,
+dialog.background button.suggested-action:backdrop {
+    background-color: @ACCENT_ALT@;
+    color: @BACKGROUND@;
+}
+
+window.background.dialog label:backdrop,
+dialog.background label:backdrop,
+.thunar label:backdrop,
+.thunar menubar > menuitem:backdrop,
+.thunar toolbar button:backdrop {
+    color: @FOREGROUND@;
+}
+
+window.background.dialog box:backdrop,
+window.background.dialog .dialog-action-area:backdrop,
+dialog.background box:backdrop,
+.thunar box:backdrop,
+.thunar paned:backdrop,
+.thunar toolbar:backdrop,
+.thunar notebook:backdrop,
+.thunar notebook > stack:backdrop,
+.thunar notebook > header:backdrop,
+.thunar notebook > header > tabs > tab:backdrop {
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+}
+
+.thunar paned > box:first-child:backdrop,
+.thunar paned > box:last-child > scrolledwindow:backdrop,
+.thunar paned > scrolledwindow:backdrop,
+.thunar notebook > stack > scrolledwindow:backdrop {
+    background-color: @BG_CONTENT@;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+}
+
+.thunar scrolledwindow viewport:backdrop,
+.thunar scrolledwindow treeview.view:backdrop,
+.thunar scrolledwindow iconview:backdrop,
+.thunar scrolledwindow .view:backdrop,
+.thunar .sidebar:backdrop,
+.thunar .sidebar treeview.view:backdrop {
+    background-color: transparent;
+    background-image: none;
+    color: @FOREGROUND@;
+}
+
+.thunar notebook > header.top > tabs > tab:checked:backdrop {
+    background-color: @BG_SELECT@;
+    color: @FOREGROUND@;
+    box-shadow: none;
+}
+
+.thunar statusbar:backdrop {
+    background-color: @BG_CONTENT@;
+    color: @SUBTEXT@;
+    border: 1px solid @BORDER@;
+}
+
+.thunar iconview:selected:backdrop,
+.thunar treeview.view:selected:backdrop,
+.thunar .sidebar row:selected:backdrop {
+    background-color: @BG_SELECT@;
+    color: @FOREGROUND@;
+}
+
+window.thunar:backdrop,
+.thunar window:backdrop,
+window.background.thunar:backdrop {
+    background-color: @BG_WINDOW@;
+        color: @FOREGROUND@;
+        border-radius: 12px;
+        border: 1px solid @BORDER@;
+}
+
+.thunar:backdrop,
+.thunar .background:backdrop,
+.thunar paned:backdrop,
+.thunar box:backdrop {
+    background-color: transparent;
+        color: @FOREGROUND@;
+}
+
+.thunar menubar:backdrop,
+.thunar menubar > menuitem:backdrop {
+    background: transparent;
+        color: @FOREGROUND@;
+        border: none;
+        padding: 2px 6px;
+}
+
+.thunar menubar > menuitem:hover:backdrop {
+    background-color: @ACCENT_ALPHA@;
+        border-radius: 8px;
+}
+
+.thunar menu:backdrop {
+    background-color: @BG_POPUP@;
+        color: @FOREGROUND@;
+        border: 1px solid @BORDER@;
+        border-radius: 8px;
+        padding: 4px;
+}
+
+.thunar toolbar:backdrop,
+.thunar .toolbar:backdrop {
+    background: transparent;
+        border: none;
+        padding: 6px 10px;
+}
+
+.thunar toolbar button:backdrop,
+.thunar toolbar .flat:backdrop {
+    background: transparent;
+        border: none;
+        border-radius: 8px;
+        min-width: 30px;
+        min-height: 30px;
+        color: @FOREGROUND@;
+}
+
+.thunar toolbar button:hover:backdrop {
+    background-color: @ACCENT_ALPHA@;
+}
+
+.thunar toolbar button:active:backdrop,
+.thunar toolbar button:checked:backdrop {
+    background-color: @ACCENT_STRONG@;
+}
+
+.thunar entry:backdrop,
+.thunar .path-bar:backdrop,
+.thunar toolbar entry:backdrop {
+    background-color: @BG_FIELD@;
+        color: @FOREGROUND@;
+        caret-color: @FOREGROUND@;
+        border: 1px solid @BORDER@;
+        border-radius: 8px;
+        padding: 8px 12px;
+        min-height: 26px;
+        box-shadow: none;
+}
+
+.thunar entry:focus:backdrop {
+    border-color: @ACCENT_ALT@; box-shadow: none;
+}
+
+.thunar .sidebar:backdrop,
+.thunar .sidebar row:backdrop,
+.thunar .sidebar treeview:backdrop,
+.thunar .sidebar treeview.view:backdrop {
+    background-color: @BG_CONTENT@;
+        color: @FOREGROUND@;
+}
+
+.thunar .sidebar:backdrop {
+    border-radius: 8px; margin: 0 0 0 6px; border: 1px solid @BORDER@;
+}
+
+.thunar .sidebar treeview.view:selected:backdrop,
+.thunar .sidebar row:selected:backdrop {
+    background-color: @BG_SELECT@;
+        color: @FOREGROUND@;
+        border-radius: 8px;
+}
+
+.thunar .sidebar treeview.view:hover:backdrop {
+    background-color: @ACCENT_ALPHA@;
+        border-radius: 8px;
+}
+
+.thunar .sidebar treeview.view.header:backdrop,
+.thunar .sidebar .dim-label:backdrop {
+    color: @FOREGROUND@;
+}
+
+.thunar scrolledwindow:backdrop,
+.thunar .view:backdrop,
+.thunar iconview:backdrop,
+.thunar treeview.view:backdrop {
+    background-color: @BG_CONTENT@;
+        color: @FOREGROUND@;
+        border-radius: 8px;
+}
+
+.thunar scrolledwindow:backdrop {
+    border: 1px solid @BORDER@;
+}
+
+.thunar iconview:selected:backdrop,
+.thunar .view:selected:backdrop,
+.thunar treeview.view:selected:backdrop {
+    background-color: @BG_SELECT@;
+        color: @FOREGROUND@;
+        border-radius: 8px;
+}
+
+.thunar rubberband:backdrop {
+    background-color: @ACCENT_ALPHA@;
+        border: 1px solid @ACCENT_ALT@;
+        border-radius: 4px;
+}
+
+.thunar statusbar:backdrop {
+    border: 1px solid @BORDER@;
+        background-color: @BG_FIELD@;
+        color: @SUBTEXT@;
+        border-radius: 8px;
+        margin: 6px 10px 10px 10px;
+        padding: 6px 12px;
+}
+
+.thunar scrollbar:backdrop {
+    background: transparent; border: none;
+}
+
+.thunar scrollbar slider:backdrop {
+    background-color: @MUTED_ALPHA@;
+        border-radius: 4px;
+        min-width: 6px;
+        min-height: 6px;
+        border: 2px solid transparent;
+}
+
+.thunar scrollbar slider:hover:backdrop {
+    background-color: @ACCENT_ALT@;
+}
+
+window.background.dialog:backdrop,
+dialog.background:backdrop,
+window.dialog:backdrop {
+    background-color: @BG_WINDOW@;
+        color: @FOREGROUND@;
+        border-radius: 12px;
+        border: 1px solid @BORDER@;
+}
+
+window.background.dialog headerbar:backdrop,
+dialog headerbar:backdrop,
+window.dialog headerbar:backdrop {
+    background: transparent;
+        background-image: none;
+        border: none;
+        box-shadow: none;
+        color: @FOREGROUND@;
+        padding: 6px 10px;
+}
+
+window.background.dialog headerbar button:backdrop,
+dialog headerbar button:backdrop,
+window.dialog headerbar button:backdrop {
+    background: transparent;
+        background-image: none;
+        border: none;
+        border-radius: 8px;
+        box-shadow: none;
+        min-height: 30px;
+        padding: 4px 14px;
+        color: @FOREGROUND@;
+}
+
+window.background.dialog headerbar button:hover:backdrop,
+dialog headerbar button:hover:backdrop,
+window.dialog headerbar button:hover:backdrop {
+    background-color: @ACCENT_ALPHA@;
+}
+
+window.background.dialog headerbar button.suggested-action:backdrop,
+dialog headerbar button.suggested-action:backdrop,
+window.dialog headerbar button.suggested-action:backdrop {
+    background-color: @ACCENT_ALT@;
+        color: @BACKGROUND@;
+}
+
+window.background.dialog headerbar entry:backdrop,
+dialog headerbar entry:backdrop,
+window.dialog headerbar entry:backdrop {
+    background-color: @BG_FIELD@;
+        color: @FOREGROUND@;
+        border: none;
+        border-radius: 8px;
+        box-shadow: none;
+}
+
+filechooser:backdrop,
+filechooserwidget:backdrop,
+.filechooser:backdrop,
+.dialog filechooser:backdrop {
+    background-color: transparent;
+        color: @FOREGROUND@;
+}
+
+filechooser .sidebar:backdrop,
+filechooser .sidebar treeview:backdrop,
+filechooser .sidebar treeview.view:backdrop {
+    background-color: transparent;
+        color: @FOREGROUND@;
+}
+
+filechooser .sidebar treeview.view:hover:backdrop {
+    background-color: @ACCENT_ALPHA@; border-radius: 8px;
+}
+
+filechooser .sidebar treeview.view:selected:backdrop,
+filechooser .sidebar row:selected:backdrop {
+    background-color: @BG_SELECT@;
+        color: @FOREGROUND@;
+        border-radius: 8px;
+}
+
+filechooser .sidebar .dim-label:backdrop,
+filechooser .sidebar treeview.view.header:backdrop {
+    color: @SUBTEXT@;
+}
+
+filechooser .pathbar:backdrop {
+    background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 2px 4px;
+}
+
+filechooser .pathbar button:backdrop,
+filechooser .pathbar button.text-button:backdrop {
+    background: transparent;
+        background-image: none;
+        border: none;
+        border-radius: 8px;
+        box-shadow: none;
+        color: @FOREGROUND@;
+        min-height: 28px;
+        padding: 2px 12px;
+}
+
+filechooser .pathbar button:hover:backdrop {
+    background-color: @ACCENT_ALPHA@;
+}
+
+filechooser .pathbar button:checked:backdrop,
+filechooser .pathbar button:active:backdrop {
+    background-color: @ACCENT_STRONG@;
+}
+
+filechooser .view:backdrop,
+filechooser treeview.view:backdrop,
+filechooser iconview:backdrop,
+filechooser scrolledwindow:backdrop {
+    background-color: @BG_CONTENT@;
+        color: @FOREGROUND@;
+        border-radius: 8px;
+}
+
+filechooser treeview.view:hover:backdrop {
+    background-color: @ACCENT_ALPHA@;
+}
+
+filechooser treeview.view:selected:backdrop,
+filechooser iconview:selected:backdrop {
+    background-color: @BG_SELECT@;
+        color: @FOREGROUND@;
+        border-radius: 8px;
+}
+
+filechooser treeview header button:backdrop {
+    background: transparent;
+        background-image: none;
+        border: none;
+        box-shadow: none;
+        color: @SUBTEXT@;
+        padding: 4px 8px;
+}
+
+filechooser treeview header button:hover:backdrop {
+    color: @FOREGROUND@;
+}
+
+filechooser entry:backdrop,
+filechooser .location-entry:backdrop,
+filechooser .path-bar entry:backdrop {
+    background-color: @BG_FIELD@;
+        color: @FOREGROUND@;
+        caret-color: @FOREGROUND@;
+        border: 1px solid @BORDER@;
+        border-radius: 8px;
+        padding: 8px 12px;
+        min-height: 26px;
+        box-shadow: none;
+}
+
+filechooser entry:focus:backdrop {
+    border-color: @ACCENT_ALT@; box-shadow: none;
+}
+
+filechooser combobox button:backdrop,
+filechooser .combo button:backdrop {
+    background-color: @BG_FIELD@;
+        background-image: none;
+        border: none;
+        border-radius: 8px;
+        box-shadow: none;
+        color: @FOREGROUND@;
+}
+
+filechooser combobox button:hover:backdrop {
+    background-color: @ACCENT_ALPHA@;
+}
+
+filechooser .dialog-action-area button:backdrop,
+filechooser button:backdrop {
+    background-color: transparent;
+        background-image: none;
+        border: none;
+        border-radius: 8px;
+        box-shadow: none;
+        color: @FOREGROUND@;
+}
+
+filechooser button:hover:backdrop {
+    background-color: @ACCENT_ALPHA@;
+}
+
+filechooser button.suggested-action:backdrop {
+    background-color: @ACCENT_ALT@;
+        color: @BACKGROUND@;
+}
+
+filechooser scrollbar:backdrop {
+    background: transparent; border: none;
+}
+
+filechooser scrollbar slider:backdrop {
+    background-color: @MUTED_ALPHA@;
+        border-radius: 4px;
+        min-width: 6px;
+        min-height: 6px;
+        border: 2px solid transparent;
+}
+
+filechooser scrollbar slider:hover:backdrop {
+    background-color: @ACCENT_ALT@;
+}
+
+window.background.dialog *:backdrop,
+window.background.csd.dialog *:backdrop,
+dialog.background *:backdrop,
+window.dialog *:backdrop {
+    background-image: none;
+}
+
+window.background.dialog box:backdrop,
+window.background.dialog paned:backdrop,
+window.background.dialog .dialog-vbox:backdrop,
+window.background.dialog .dialog-action-area:backdrop,
+window.background.dialog .bottom-bar:backdrop,
+window.background.dialog .horizontal:backdrop,
+window.background.dialog .vertical:backdrop,
+window.background.dialog viewport:backdrop,
+window.background.dialog scrolledwindow:backdrop,
+window.background.dialog filechooser box:backdrop,
+window.background.dialog filechooser paned:backdrop,
+window.background.dialog filechooser viewport:backdrop,
+window.background.dialog filechooser .dialog-vbox:backdrop,
+window.background.dialog filechooser .toolbar:backdrop,
+window.background.dialog filechooser .bottom-bar:backdrop,
+window.background.dialog filechooser .sidebar viewport:backdrop,
+window.background.dialog filechooser .sidebar scrolledwindow:backdrop,
+window.background.csd.dialog box:backdrop,
+window.background.csd.dialog paned:backdrop,
+window.background.csd.dialog viewport:backdrop,
+window.background.csd.dialog scrolledwindow:backdrop,
+window.background.csd.dialog filechooser box:backdrop,
+window.background.csd.dialog filechooser paned:backdrop,
+window.background.csd.dialog filechooser viewport:backdrop,
+window.background.csd.dialog filechooser .bottom-bar:backdrop,
+window.background.csd.dialog filechooser .toolbar:backdrop,
+window.background.csd.dialog filechooser .sidebar viewport:backdrop,
+window.background.csd.dialog filechooser .sidebar scrolledwindow:backdrop,
+window.dialog box:backdrop,
+window.dialog paned:backdrop,
+window.dialog viewport:backdrop,
+window.dialog filechooser box:backdrop,
+window.dialog filechooser viewport:backdrop,
+filechooser box:backdrop,
+filechooser paned:backdrop,
+filechooser viewport:backdrop,
+filechooser .sidebar viewport:backdrop,
+filechooser .bottom-bar:backdrop,
+filechooser .dialog-action-area:backdrop,
+filechooser .toolbar:backdrop,
+filechooser .horizontal:backdrop,
+filechooser .vertical:backdrop {
+    background-color: transparent;
+        background-image: none;
+        box-shadow: none;
+}
+
+window.background.dialog:backdrop,
+window.background.csd.dialog:backdrop,
+dialog.background:backdrop,
+window.dialog:backdrop {
+    background-color: @BG_WINDOW@;
+}
+
+filechooser .view:backdrop,
+filechooser treeview.view:backdrop,
+filechooser iconview:backdrop,
+filechooser scrolledwindow > viewport > .view:backdrop {
+    background-color: @BG_CONTENT@;
+}
+
+window.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar):backdrop {
+    background-color: @BG_POPUP@;
+        color: @FOREGROUND@;
+        border-radius: 12px;
+        border: 1px solid @BORDER@;
+}
+
+window.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar) progressbar trough:backdrop {
+    background-color: @BG_FIELD@;
+        border: none;
+        border-radius: 8px;
+        min-height: 6px;
+}
+
+window.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar) progressbar progress:backdrop {
+    background-color: @ACCENT_ALT@;
+        background-image: none;
+        border: none;
+        border-radius: 8px;
+        min-height: 6px;
+}
+
+window.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar) progressbar text:backdrop,
+window.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar) label:backdrop {
+    color: @FOREGROUND@;
+}
+
+window.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar) button:backdrop {
+    background-color: transparent;
+        background-image: none;
+        border: none;
+        border-radius: 8px;
+        box-shadow: none;
+        color: @FOREGROUND@;
+}
+
+window.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar) button:hover:backdrop {
+    background-color: @ACCENT_ALPHA@;
+}
+
+dialog.background entry:backdrop,
+dialog.background spinbutton:backdrop,
+dialog.background textview:backdrop,
+dialog.background textview text:backdrop,
+dialog.background entry text:backdrop {
+    background-color: @BG_FIELD@;
+        background-image: none;
+        color: @FOREGROUND@;
+        caret-color: @FOREGROUND@;
+        border: none;
+        border-radius: 8px;
+        box-shadow: none;
+}
+
+dialog.background entry:focus:backdrop,
+dialog.background spinbutton:focus-within:backdrop {
+    box-shadow: inset 0 0 0 1px @ACCENT_ALT@;
+}
+
+dialog.background spinbutton button:backdrop {
+    background-color: transparent;
+        background-image: none;
+        border: none;
+        box-shadow: none;
+        color: @FOREGROUND@;
+}
+
+dialog.background treeview.view:backdrop,
+dialog.background iconview:backdrop,
+dialog.background list:backdrop,
+dialog.background list row:backdrop,
+dialog.background scrolledwindow:backdrop {
+    background-color: @BG_CONTENT@;
+        background-image: none;
+        color: @FOREGROUND@;
+}
+
+dialog.background treeview.view:hover:backdrop,
+dialog.background list row:hover:backdrop {
+    background-color: @ACCENT_ALPHA@;
+}
+
+dialog.background treeview.view:selected:backdrop,
+dialog.background list row:selected:backdrop,
+dialog.background iconview:selected:backdrop {
+    background-color: @BG_SELECT@;
+        color: @FOREGROUND@;
+}
+
+dialog.background button:backdrop {
+    background-image: none;
+        box-shadow: none;
+        color: @FOREGROUND@;
+}
+
+dialog.background button:not(.suggested-action):not(.destructive-action):backdrop {
+    background-color: @BG_FIELD@; border: none; border-radius: 8px;
+}
+
+dialog.background button:hover:backdrop {
+    background-color: @ACCENT_ALPHA@;
+}
+
+dialog.background button.suggested-action:backdrop,
+dialog.background button.destructive-action:backdrop {
+    background-color: @ACCENT_ALT@;
+        color: @BACKGROUND@;
+        border: none;
+        border-radius: 8px;
+}
+
+dialog.background switch:backdrop {
+    background-color: @BG_FIELD@;
+        background-image: none;
+        border: none;
+        color: @FOREGROUND@;
+}
+
+dialog.background switch:checked:backdrop {
+    background-color: @ACCENT_STRONG@;
+}
+
+dialog.background switch slider:backdrop {
+    background-color: @FOREGROUND@;
+        background-image: none;
+        border: none;
+}
+
+dialog.background scrollbar:backdrop,
+dialog.background actionbar:backdrop,
+dialog.background actionbar.background:backdrop,
+dialog.background notebook > header:backdrop,
+dialog.background notebook > header > tabs > tab:backdrop {
+    background-color: transparent;
+        background-image: none;
+        border-color: transparent;
+        color: @FOREGROUND@;
+}
+
+dialog.background notebook > header > tabs > tab:checked:backdrop {
+    background-color: @BG_SELECT@;
+        border-radius: 8px;
+}
+
+.thunar .path-bar button:backdrop,
+.thunar .path-bar button.text-button:backdrop,
+.thunar .path-bar button.image-button:backdrop {
+    background-color: transparent;
+        background-image: none;
+        border: none;
+        border-radius: 8px;
+        box-shadow: none;
+        color: @FOREGROUND@;
+        min-height: 26px;
+        padding: 2px 10px;
+}
+
+.thunar .path-bar button:hover:backdrop {
+    background-color: @ACCENT_ALPHA@;
+}
+
+.thunar .path-bar button:checked:backdrop,
+.thunar .path-bar button:active:backdrop {
+    background-color: @ACCENT_STRONG@;
+}
+
+.thunar notebook > header:backdrop,
+.thunar notebook > header > tabs > tab:backdrop {
+    background: transparent;
+        border: none;
+        box-shadow: none;
+        color: @SUBTEXT@;
+}
+
+.thunar notebook > header > tabs > tab:checked:backdrop {
+    background-color: @BG_SELECT@;
+        border-radius: 8px;
+        color: @FOREGROUND@;
+}
+
+.thunar paned > box:first-child:backdrop,
+.thunar paned > box:last-child > scrolledwindow:backdrop,
+.thunar paned > scrolledwindow:backdrop {
+    background-color: @BG_CONTENT@;
+        border: 1px solid @BORDER@;
+        border-radius: 8px;
+}
+
+.thunar paned > box:first-child:backdrop {
+    margin: 0 6px 0 0;
+}
+
+.thunar paned > box:first-child scrolledwindow:backdrop,
+.thunar paned > box:first-child viewport:backdrop,
+.thunar paned > box:first-child .sidebar:backdrop,
+.thunar paned > box:first-child treeview.view:backdrop,
+.thunar paned > box:first-child treeview.view row:backdrop,
+.thunar scrolledwindow viewport:backdrop,
+.thunar scrolledwindow treeview.view:backdrop,
+.thunar scrolledwindow iconview:backdrop,
+.thunar scrolledwindow .view:backdrop {
+    background-color: transparent;
+        background-image: none;
+        border: none;
+        box-shadow: none;
+}
+
+.thunar iconview:hover:backdrop,
+.thunar treeview.view:hover:backdrop {
+    background-color: @ACCENT_ALPHA@; border-radius: 8px;
+}
+
+.thunar iconview:selected:backdrop,
+.thunar treeview.view:selected:backdrop,
+.thunar .sidebar row:selected:backdrop {
+    background-color: @BG_SELECT@;
+        border: 1px solid @BORDER@;
+        border-radius: 8px;
+}
+
+.thunar .path-bar:backdrop,
+.thunar toolbar entry:backdrop,
+.thunar entry:backdrop {
+    background-color: @BG_FIELD@;
+        border: 1px solid @BORDER@;
+}
+
+.thunar statusbar:backdrop {
+    background-color: @BG_CONTENT@; border: 1px solid @BORDER@;
+}
+
+.thunar iconview:selected:backdrop,
+.thunar iconview:selected:focus:backdrop,
+.thunar iconview .cell:selected:backdrop,
+.thunar iconview.view:selected:backdrop,
+.thunar .view:selected:backdrop,
+.thunar .view:selected:focus:backdrop,
+.thunar treeview.view:selected:backdrop,
+.thunar treeview.view:selected:focus:backdrop,
+.thunar .sidebar row:selected:backdrop,
+.thunar .sidebar treeview.view:selected:backdrop {
+    background-color: @BG_SELECT@;
+        background-image: none;
+        color: @FOREGROUND@;
+        border: 1px solid @BORDER@;
+        border-radius: 8px;
+        box-shadow: none;
+        outline: none;
+}
+
+.thunar iconview:hover:backdrop,
+.thunar iconview .cell:hover:backdrop {
+    background-color: @ACCENT_ALPHA@; border-radius: 8px;
+}
+
+.thunar iconview:focus:backdrop,
+.thunar treeview.view:focus:backdrop,
+.thunar *:focus:backdrop {
+    outline: none; outline-width: 0;
+}
+
+.thunar rubberband:backdrop,
+.thunar .rubberband:backdrop {
+    background-color: @ACCENT_ALPHA@;
+        border: 1px solid @ACCENT_ALT@;
+        border-radius: 4px;
+}
+
+dialog headerbar:backdrop,
+window.dialog headerbar:backdrop,
+window.dialog .titlebar:backdrop,
+dialog.background .titlebar:backdrop {
+    background-color: @BG_POPUP@;
+        background-image: none;
+        border: none;
+        box-shadow: none;
+        border-radius: 12px 12px 0 0;
+        color: @FOREGROUND@;
+}
+
+dialog headerbar label:backdrop {
+    color: @SUBTEXT@;
+}
+
+window.dialog.background:backdrop,
+dialog.background:backdrop {
+    background-color: @BG_POPUP@;
+        border: 1px solid @BORDER@;
+        border-radius: 12px;
+}
+
+.thunar menu:backdrop {
+    background-color: @BG_POPUP@; border: 1px solid @BORDER@; border-radius: 8px;
+}
+
+.thunar separator:backdrop {
+    background-color: @MUTED_ALPHA@; min-height: 1px;
+}
+
+dialog.background combobox button:backdrop {
+    background-color: @BG_FIELD@;
+        background-image: none;
+        border: 1px solid @BORDER@;
+        border-radius: 8px;
+        box-shadow: none;
+        color: @FOREGROUND@;
+}
+
+dialog.background label:backdrop,
+window.background.dialog label:backdrop {
+    color: @FOREGROUND@;
+}
+
+dialog.background label.dim-label:backdrop,
+dialog.background .dim-label:backdrop {
+    color: @SUBTEXT@;
+}
+
+.thunar treeview header button:backdrop {
+    background-color: transparent;
+        background-image: none;
+        border: none;
+        border-bottom: 1px solid @BORDER@;
+        border-radius: 0;
+        box-shadow: none;
+        color: @SUBTEXT@;
+}
+
+filechooser placessidebar:backdrop,
+filechooser placessidebar list:backdrop,
+filechooser placessidebar viewport:backdrop,
+filechooser placessidebar scrolledwindow:backdrop {
+    background-color: transparent;
+        background-image: none;
+        border: none;
+        box-shadow: none;
+}
+
+filechooser placessidebar row:backdrop {
+    background-color: transparent;
+        background-image: none;
+        color: @FOREGROUND@;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        margin: 2px 6px;
+        padding: 0 6px;
+        min-height: 34px;
+        box-shadow: none;
+}
+
+filechooser placessidebar row:hover:backdrop {
+    background-color: @ACCENT_ALPHA@;
+}
+
+filechooser placessidebar row:selected:backdrop,
+filechooser placessidebar row:selected:focus:backdrop {
+    background-color: @BG_SELECT@;
+        border-color: @BORDER@;
+        color: @FOREGROUND@;
+}
+
+filechooser placessidebar row separator:backdrop,
+filechooser placessidebar separator:backdrop {
+    background-color: @MUTED_ALPHA@;
+        min-height: 1px;
+        margin: 4px 12px;
+}
+
+filechooser placessidebar row image:backdrop,
+filechooser placessidebar row label:backdrop {
+    color: @FOREGROUND@;
+}
+
+filechooser placessidebar row.sidebar-placeholder-row:backdrop {
+    background-color: @ACCENT_ALPHA@; border-radius: 8px;
+}
+
+filechooser placessidebar:backdrop {
+    margin: 0 6px 0 0;
+}
+
+filechooser paned > box:first-child:backdrop,
+filechooser box > placessidebar:backdrop {
+    background-color: @BG_CONTENT@;
+        border: 1px solid @BORDER@;
+        border-radius: 8px;
+}
+
+filechooser .path-bar button:backdrop,
+filechooser .path-bar button.text-button:backdrop,
+filechooser .path-bar button.image-button:backdrop,
+filechooser box.linked.path-bar > button:backdrop {
+    background-color: transparent;
+        background-image: none;
+        border: none;
+        border-radius: 8px;
+        box-shadow: none;
+        color: @FOREGROUND@;
+        min-height: 28px;
+        padding: 2px 12px;
+        margin: 0 2px;
+}
+
+filechooser .path-bar button:hover:backdrop {
+    background-color: @ACCENT_ALPHA@;
+}
+
+filechooser .path-bar button:checked:backdrop,
+filechooser .path-bar button:active:backdrop {
+    background-color: @ACCENT_STRONG@;
+}
+
+dialog headerbar button.suggested-action:backdrop,
+window.dialog headerbar button.suggested-action:backdrop,
+window.background.dialog headerbar button.suggested-action:backdrop,
+window.background.dialog headerbar button.suggested-action:focus:backdrop,
+filechooser button.suggested-action:backdrop {
+    background-color: @ACCENT_ALT@;
+        background-image: none;
+        color: @BACKGROUND@;
+        font-weight: 600;
+        opacity: 1;
+        text-shadow: none;
+}
+
+window.background.dialog headerbar button.suggested-action:hover:backdrop {
+    background-color: @ACCENT@;
+}
+
+window.background.dialog headerbar button.suggested-action:disabled:backdrop,
+filechooser button.suggested-action:disabled:backdrop {
+    background-color: @BG_SELECT@;
+        color: @SUBTEXT@;
+}
+
+window.background.dialog filechooser placessidebar:backdrop,
+dialog.background filechooser placessidebar:backdrop {
+    background-color: @BG_CONTENT@;
+        background-image: none;
+        border: 1px solid @BORDER@;
+        border-radius: 8px;
+        margin: 0 6px 0 0;
+        padding: 4px 0;
+        box-shadow: none;
+}
+
+window.background.dialog filechooser placessidebar list:backdrop,
+window.background.dialog filechooser placessidebar viewport:backdrop,
+window.background.dialog filechooser placessidebar scrolledwindow:backdrop,
+dialog.background filechooser placessidebar list:backdrop,
+dialog.background filechooser placessidebar viewport:backdrop,
+dialog.background filechooser placessidebar scrolledwindow:backdrop {
+    background-color: transparent;
+        background-image: none;
+        border: none;
+        box-shadow: none;
+}
+
+window.background.dialog filechooser placessidebar list row:backdrop,
+dialog.background filechooser placessidebar list row:backdrop {
+    background-color: transparent;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        margin: 1px 6px;
+        padding: 0 6px;
+        min-height: 32px;
+        color: @FOREGROUND@;
+        box-shadow: none;
+}
+
+window.background.dialog filechooser placessidebar list row:hover:backdrop,
+dialog.background filechooser placessidebar list row:hover:backdrop {
+    background-color: @ACCENT_ALPHA@;
+}
+
+window.background.dialog filechooser placessidebar list row:selected:backdrop,
+window.background.dialog filechooser placessidebar list row:selected:focus:backdrop,
+dialog.background filechooser placessidebar list row:selected:backdrop,
+dialog.background filechooser placessidebar list row:selected:focus:backdrop {
+    background-color: @BG_SELECT@;
+        border-color: @BORDER@;
+        color: @FOREGROUND@;
+}
+
+window.background.dialog filechooser .path-bar button:not(.suggested-action):backdrop,
+window.background.dialog filechooser box.linked > button:not(.suggested-action):backdrop,
+dialog.background filechooser .path-bar button:not(.suggested-action):backdrop,
+dialog.background filechooser box.linked > button:not(.suggested-action):backdrop {
+    background-color: transparent;
+        background-image: none;
+        border: none;
+        border-radius: 8px;
+        box-shadow: none;
+        color: @FOREGROUND@;
+}
+
+window.background.dialog filechooser .path-bar button:not(.suggested-action):hover:backdrop,
+window.background.dialog filechooser box.linked > button:not(.suggested-action):hover:backdrop,
+dialog.background filechooser .path-bar button:not(.suggested-action):hover:backdrop,
+dialog.background filechooser box.linked > button:not(.suggested-action):hover:backdrop {
+    background-color: @ACCENT_ALPHA@;
+}
+
+window.background.dialog filechooser .path-bar button:checked:backdrop,
+window.background.dialog filechooser .path-bar button:active:backdrop,
+dialog.background filechooser .path-bar button:checked:backdrop,
+dialog.background filechooser .path-bar button:active:backdrop {
+    background-color: @ACCENT_STRONG@;
+}
+
+.thunar notebook:backdrop,
+.thunar notebook > stack:backdrop,
+.thunar notebook > stack > box:backdrop,
+.thunar notebook > stack > paned:backdrop,
+.thunar notebook > stack > scrolledwindow:backdrop,
+.thunar notebook > stack > scrolledwindow > viewport:backdrop {
+    background-color: transparent;
+        background-image: none;
+        border: none;
+        box-shadow: none;
+}
+
+.thunar notebook > stack > paned > box:first-child:backdrop,
+.thunar notebook > stack > paned > box:last-child > scrolledwindow:backdrop,
+.thunar notebook > stack > scrolledwindow:backdrop {
+    background-color: @BG_CONTENT@;
+        border: 1px solid @BORDER@;
+        border-radius: 8px;
+}
+
+.thunar notebook > header:backdrop {
+    margin: 0 6px 6px 6px;
+}
+
+window.background.dialog:backdrop,
+window.background.csd.dialog:backdrop,
+dialog.background:backdrop,
+window.dialog:backdrop {
+    background-color: @BG_POPUP@;
+}
+
+window.background.dialog entry:backdrop,
+dialog.background entry:backdrop {
+    background-color: @BG_FIELD@;
+        color: @FOREGROUND@;
+        border: 1px solid @BORDER@;
+        border-radius: 8px;
+        box-shadow: none;
+}
+
+window.background.dialog button:backdrop,
+dialog.background button:backdrop {
+    background-color: @BG_FIELD@;
+        background-image: none;
+        color: @FOREGROUND@;
+        border: none;
+        border-radius: 8px;
+        box-shadow: none;
+}
+
+window.background.dialog button:hover:backdrop,
+dialog.background button:hover:backdrop {
+    background-color: @ACCENT_ALPHA@;
+}
+
+window.background.dialog button.suggested-action:backdrop,
+dialog.background button.suggested-action:backdrop {
+    background-color: @ACCENT_ALT@;
+        color: @BACKGROUND@;
+}
+
+window.background.dialog checkbutton check:backdrop,
+dialog.background checkbutton check:backdrop {
+    background-color: @BG_FIELD@;
+        background-image: none;
+        border: 1px solid @BORDER@;
+        border-radius: 4px;
+        color: @BACKGROUND@;
+        box-shadow: none;
+}
+
+window.background.dialog checkbutton check:checked:backdrop,
+dialog.background checkbutton check:checked:backdrop {
+    background-color: @ACCENT_ALT@;
+        border-color: @ACCENT_ALT@;
+}
+
+.thunar notebook > stack:not(:only-child):backdrop,
+.thunar notebook > header ~ stack:backdrop,
+.thunar notebook > header.top ~ stack:backdrop,
+.thunar notebook.frame:backdrop,
+.thunar notebook.frame > stack:backdrop {
+    background-color: transparent;
+        background-image: none;
+        border: none;
+        box-shadow: none;
+}
+
+.thunar notebook > header.top:backdrop,
+.thunar notebook > header.top > tabs:backdrop,
+.thunar notebook > header.top > tabs > tab:backdrop {
+    background-color: transparent;
+        background-image: none;
+        border: none;
+        border-radius: 8px;
+        box-shadow: none;
+        color: @SUBTEXT@;
+}
+
+.thunar notebook > header.top > tabs > tab:hover:backdrop {
+    background-color: @ACCENT_ALPHA@;
+}
+
+.thunar notebook > header.top > tabs > tab:checked:backdrop,
+.thunar notebook > header.top > tabs > tab:checked:hover:backdrop {
+    background-color: @BG_SELECT@;
+        background-image: none;
+        border: none;
+        box-shadow: none;
+        color: @FOREGROUND@;
+}
+
+.thunar notebook > header.top > tabs > tab button:backdrop {
+    background-color: transparent;
+        background-image: none;
+        border: none;
+        box-shadow: none;
+        color: @SUBTEXT@;
+}
+
+window.background.dialog,
+window.background.dialog:backdrop,
+window.background.csd.dialog,
+window.background.csd.dialog:backdrop,
+window.background.solid-csd.dialog,
+window.background.solid-csd.dialog:backdrop,
+window.dialog,
+window.dialog:backdrop,
+window.dialog.background,
+window.dialog.background:backdrop,
+dialog.background,
+dialog.background:backdrop,
+dialog.background.csd,
+dialog.background.csd:backdrop {
+    background-color: @BG_POPUP@;
+    background-image: none;
+    color: @FOREGROUND@;
+    border-radius: 12px;
+    border: 1px solid @BORDER@;
+    box-shadow: none;
+}
+
+window.background.dialog decoration,
+window.background.dialog decoration:backdrop,
+window.background.csd.dialog decoration,
+window.background.csd.dialog decoration:backdrop,
+window.dialog decoration,
+window.dialog decoration:backdrop,
+dialog.background decoration,
+dialog.background decoration:backdrop {
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    border-radius: 4px;
+}
+
+window.background.dialog headerbar,
+window.background.dialog headerbar:backdrop,
+window.background.dialog headerbar.titlebar,
+window.background.dialog headerbar.titlebar:backdrop,
+window.background.dialog .titlebar,
+window.background.dialog .titlebar:backdrop,
+window.background.dialog windowhandle,
+window.background.dialog windowhandle:backdrop,
+window.background.csd.dialog headerbar,
+window.background.csd.dialog headerbar:backdrop,
+window.background.csd.dialog headerbar.titlebar,
+window.background.csd.dialog headerbar.titlebar:backdrop,
+window.dialog headerbar,
+window.dialog headerbar:backdrop,
+window.dialog .titlebar,
+window.dialog .titlebar:backdrop,
+dialog.background headerbar,
+dialog.background headerbar:backdrop,
+dialog.background .titlebar,
+dialog.background .titlebar:backdrop {
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    border: none;
+    border-radius: 12px 12px 0 0;
+    color: @FOREGROUND@;
+    text-shadow: none;
+}
+
+window.background.dialog box,
+window.background.dialog box:backdrop,
+window.background.dialog .dialog-vbox,
+window.background.dialog .dialog-vbox:backdrop,
+window.background.dialog .dialog-action-area,
+window.background.dialog .dialog-action-area:backdrop,
+window.background.dialog .dialog-action-box,
+window.background.dialog actionbar,
+window.background.dialog actionbar:backdrop,
+window.background.dialog actionbar > revealer > box,
+window.background.dialog .bottom-bar,
+window.background.dialog .bottom-bar:backdrop,
+window.background.dialog filechooser box,
+window.background.dialog filechooser box:backdrop,
+window.background.dialog filechooser actionbar,
+window.background.dialog filechooser .bottom-bar,
+window.background.dialog filechooser .toolbar,
+window.background.dialog filechooser .toolbar:backdrop,
+window.background.csd.dialog box,
+window.background.csd.dialog box:backdrop,
+window.dialog box,
+window.dialog box:backdrop,
+dialog.background box,
+dialog.background box:backdrop {
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+}
+
+window.background.dialog label,
+window.background.dialog label:backdrop,
+window.background.dialog headerbar label,
+window.background.dialog headerbar label:backdrop {
+    color: @FOREGROUND@;
+}
+
+window.background.dialog .dialog-action-area button,
+window.background.dialog .dialog-action-area button:backdrop,
+window.background.dialog headerbar button,
+window.background.dialog headerbar button:backdrop {
+    background-color: @BG_FIELD@;
+    background-image: none;
+    border: none;
+    border-radius: 8px;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+window.background.dialog .dialog-action-area button:hover,
+window.background.dialog headerbar button:hover { background-color: @ACCENT_ALPHA@; }
+window.background.dialog .dialog-action-area button:active,
+window.background.dialog headerbar button:active { background-color: @ACCENT_STRONG@; }
+window.background.dialog .dialog-action-area button.suggested-action,
+window.background.dialog .dialog-action-area button.suggested-action:backdrop,
+window.background.dialog headerbar button.suggested-action,
+window.background.dialog headerbar button.suggested-action:backdrop,
+window.background.dialog .dialog-action-area button:last-child,
+window.background.dialog .dialog-action-area button:last-child:backdrop {
+    background-color: @ACCENT_ALT@;
+    color: @BACKGROUND@;
+}
+
+window.background.dialog,
+window.background.dialog:backdrop,
+window.background.csd.dialog,
+window.background.csd.dialog:backdrop,
+window.background.solid-csd.dialog,
+window.background.solid-csd.dialog:backdrop,
+window.dialog,
+window.dialog:backdrop,
+window.dialog.background,
+window.dialog.background:backdrop,
+dialog.background,
+dialog.background:backdrop,
+dialog.background.csd,
+dialog.background.csd:backdrop {
+    background-color: @BG_DIALOG@;
+    background-image: none;
+    color: @FOREGROUND@;
+    border-radius: 12px;
+    border: 1px solid @BORDER@;
+    box-shadow: none;
+}
+
+window.background.dialog headerbar,
+window.background.dialog headerbar:backdrop,
+window.background.dialog .titlebar,
+window.background.dialog .titlebar:backdrop,
+window.dialog headerbar,
+window.dialog headerbar:backdrop,
+dialog.background headerbar,
+dialog.background headerbar:backdrop,
+dialog.background .titlebar,
+dialog.background .titlebar:backdrop {
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    border: none;
+}
+
+menu,
+.menu,
+.context-menu,
+.popup menu,
+window.popup menu,
+window.csd.popup menu,
+.thunar menu,
+.thunar .popup menu {
+    background-color: @BG_DIALOG@;
+    background-image: none;
+    color: @FOREGROUND@;
+    border: 1px solid @BORDER@;
+    border-radius: 12px;
+    padding: 6px;
+    box-shadow: none;
+}
+
+window.popup,
+window.csd.popup,
+window.background.popup,
+window.background.csd.popup,
+.popup decoration,
+.popup.csd decoration,
+menu decoration {
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    border: none;
+}
+
+menu menuitem,
+.menu menuitem,
+.context-menu menuitem,
+.popup menu menuitem,
+.thunar menu menuitem {
+    background-color: transparent;
+    background-image: none;
+    color: @FOREGROUND@;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    min-height: 20px;
+    margin: 1px 0;
+    box-shadow: none;
+}
+menu menuitem label,
+.thunar menu menuitem label { color: @FOREGROUND@; }
+
+menu menuitem:hover,
+.menu menuitem:hover,
+.context-menu menuitem:hover,
+.popup menu menuitem:hover,
+.thunar menu menuitem:hover,
+menu menuitem:focus,
+.thunar menu menuitem:focus {
+    background-color: @BG_SELECT@;
+    color: @FOREGROUND@;
+}
+
+menu menuitem:disabled,
+menu menuitem:disabled label,
+.thunar menu menuitem:disabled,
+.thunar menu menuitem:disabled label {
+    color: @MUTED@;
+    background-color: transparent;
+}
+
+menu menuitem arrow,
+menu menuitem check,
+menu menuitem radio,
+menu menuitem image,
+.thunar menu menuitem arrow {
+    color: @SUBTEXT@;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+menu separator,
+.menu separator,
+.popup menu separator,
+.thunar menu separator {
+    background-color: @BORDER@;
+    min-height: 1px;
+    margin: 4px 8px;
+    border: none;
+}
+
+window.background.background.background.dialog headerbar,
+window.background.background.background.dialog headerbar:backdrop,
+window.background.background.background.dialog headerbar.titlebar,
+window.background.background.background.dialog headerbar.titlebar:backdrop,
+window.background.background.background.dialog .titlebar,
+window.background.background.background.dialog .titlebar:backdrop,
+window.background.background.background.dialog box.titlebar,
+window.background.background.background.dialog box.titlebar:backdrop,
+window.background.background.background.dialog .default-decoration,
+window.background.background.background.dialog .default-decoration:backdrop,
+window.background.background.background.dialog windowhandle,
+window.background.background.background.dialog windowhandle:backdrop,
+window.background.background.background.dialog windowhandle > box,
+window.background.background.background.dialog windowhandle > box:backdrop,
+window.background.background.background.dialog headerbar > box,
+window.background.background.background.dialog headerbar > box:backdrop,
+window.background.background.background.dialog headerbar > *:not(button):not(label),
+window.background.background.background.dialog headerbar > *:not(button):not(label):backdrop,
+window.background.background.background.dialog decoration,
+window.background.background.background.dialog decoration:backdrop,
+window.background.background.background.dialog> decoration,
+window.background.background.background.dialog> decoration:backdrop,
+dialog.background.background.background headerbar,
+dialog.background.background.background headerbar:backdrop,
+dialog.background.background.background headerbar.titlebar,
+dialog.background.background.background headerbar.titlebar:backdrop,
+dialog.background.background.background .titlebar,
+dialog.background.background.background .titlebar:backdrop,
+dialog.background.background.background box.titlebar,
+dialog.background.background.background box.titlebar:backdrop,
+dialog.background.background.background .default-decoration,
+dialog.background.background.background .default-decoration:backdrop,
+dialog.background.background.background windowhandle,
+dialog.background.background.background windowhandle:backdrop,
+dialog.background.background.background windowhandle > box,
+dialog.background.background.background windowhandle > box:backdrop,
+dialog.background.background.background headerbar > box,
+dialog.background.background.background headerbar > box:backdrop,
+dialog.background.background.background headerbar > *:not(button):not(label),
+dialog.background.background.background headerbar > *:not(button):not(label):backdrop,
+dialog.background.background.background decoration,
+dialog.background.background.background decoration:backdrop,
+dialog.background.background.background> decoration,
+dialog.background.background.background> decoration:backdrop {
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    border: none;
+    color: @FOREGROUND@;
+}
+
+messagedialog,
+messagedialog:backdrop,
+messagedialog.background,
+messagedialog.background:backdrop,
+messagedialog.background.csd,
+messagedialog.background.csd:backdrop,
+messagedialog.background.background.csd,
+messagedialog.background.background.csd:backdrop {
+    background-color: @BG_DIALOG@;
+    background-image: none;
+    border: 1px solid @BORDER@;
+    border-radius: 12px;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+
+messagedialog decoration,
+messagedialog decoration:backdrop,
+messagedialog.csd decoration,
+messagedialog.csd decoration:backdrop,
+messagedialog.background.csd decoration,
+messagedialog.background.csd decoration:backdrop {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 12px;
+    box-shadow: none;
+}
+
+messagedialog headerbar,
+messagedialog headerbar:backdrop,
+messagedialog .titlebar,
+messagedialog .titlebar:backdrop,
+messagedialog box.titlebar,
+messagedialog windowhandle,
+messagedialog windowhandle > box,
+messagedialog headerbar *,
+messagedialog .titlebar * {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+    min-height: 0;
+    font-size: 0;
+    color: transparent;
+}
+
+messagedialog box,
+messagedialog .dialog-vbox,
+messagedialog .dialog-action-box,
+messagedialog .dialog-action-area {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+
+messagedialog .dialog-vbox { padding: 12px 16px 0 16px; }
+messagedialog .dialog-action-box,
+messagedialog .dialog-action-area { margin: 6px 12px 12px 180px; }
+
+messagedialog label { color: @FOREGROUND@; }
+
+messagedialog.background button,
+messagedialog.background button:backdrop,
+messagedialog.background.csd button,
+messagedialog.background.csd button:backdrop {
+    background-color: @BG_FIELD@;
+    background-image: none;
+    border: none;
+    border-radius: 8px;
+    box-shadow: none;
+    outline: none;
+    text-shadow: none;
+    color: @FOREGROUND@;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    font-weight: 400;
+}
+messagedialog.background button:hover,
+messagedialog.background button:focus,
+messagedialog.background button:hover:backdrop,
+messagedialog.background.csd button:hover,
+messagedialog.background.csd button:focus,
+messagedialog.background.csd button:hover:backdrop {
+    background-color: @ACCENT_ALPHA@;
+    background-image: none;
+    color: @FOREGROUND@;
+    box-shadow: none;
+}
+messagedialog.background button:active,
+messagedialog.background button:checked,
+messagedialog.background.csd button:active,
+messagedialog.background.csd button:checked {
+    background-color: @ACCENT_STRONG@;
+    background-image: none;
+    color: @FOREGROUND@;
+}
+
+messagedialog.background.csd headerbar,
+messagedialog.background.csd headerbar:backdrop,
+messagedialog.background.csd .titlebar,
+messagedialog.background.csd .titlebar:backdrop,
+messagedialog.background.csd box.titlebar {
+    background-color: @BG_DIALOG@;
+    background-image: none;
+    border: 1px solid @BORDER@;
+    border-bottom: none;
+    border-radius: 12px 12px 0 0;
+    box-shadow: none;
+}
+messagedialog.background.csd,
+messagedialog.background.csd:backdrop,
+messagedialog.background.background.csd,
+messagedialog.background.background.csd:backdrop {
+    border-width: 0 1px 1px 1px;
+    border-radius: 0 0 12px 12px;
+    background-color: @BG_DIALOG@;
+    border-color: @BORDER@;
+}
+
+messagedialog image,
+messagedialog .dialog-vbox image {
+    -gtk-icon-size: 0px;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+}
+messagedialog .dialog-vbox { padding: 14px 20px 0 20px; }
+messagedialog .dialog-action-box,
+messagedialog .dialog-action-area { margin: 8px 12px 14px 12px; }
+
+window.background.dialog,
+window.background.dialog:backdrop,
+window.background.dialog,
+window.background.dialog:backdrop,
+window.background.dialog.csd,
+window.background.dialog.csd:backdrop,
+window.background.dialog.csd,
+window.background.dialog.csd:backdrop {
+    background-color: @BG_DIALOG@;
+    background-image: none;
+    border: 1px solid @BORDER@;
+    border-radius: 12px;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+
+window.background.dialog decoration,
+window.background.dialog decoration:backdrop,
+window.background.dialog.csd decoration,
+window.background.dialog.csd decoration:backdrop,
+window.background.dialog.csd decoration,
+window.background.dialog.csd decoration:backdrop {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 12px;
+    box-shadow: none;
+}
+
+window.background.dialog .dialog-vbox > box > image,
+window.background.dialog .dialog-vbox > box > box > image {
+    -gtk-icon-size: 0px;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+}
+window.background.dialog .dialog-vbox > box > box > label { color: @FOREGROUND@; }
+window.background.dialog .dialog-action-area { margin: 8px 12px 14px 12px; }
+
+window.background.background.background.background.dialog,
+window.background.background.background.background.dialog:backdrop,
+window.background.background.background.background.csd.dialog,
+window.background.background.background.background.csd.dialog:backdrop,
+window.dialog.background.background.background.background,
+window.dialog.background.background.background.background:backdrop,
+dialog.background.background.background.background,
+dialog.background.background.background.background:backdrop {
+    background-color: @BG_DIALOG@;
+    background-image: none;
+    border: 1px solid @BORDER@;
+    border-radius: 12px;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+window.background.background.background.background.dialog > box,
+window.background.background.background.background.dialog > box:backdrop,
+window.background.background.background.background.dialog .dialog-vbox,
+window.background.background.background.background.dialog .dialog-vbox:backdrop,
+window.background.background.background.background.dialog .dialog-vbox > box,
+window.background.background.background.background.dialog .dialog-vbox > box > box,
+window.background.background.background.background.dialog .dialog-action-box,
+window.background.background.background.background.dialog .dialog-action-area,
+window.background.background.background.background.dialog .dialog-action-area:backdrop,
+window.background.background.background.background.dialog decoration,
+window.background.background.background.background.dialog decoration:backdrop,
+window.background.background.background.background.dialog label,
+window.background.background.background.background.dialog image {
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    border: none;
+}
+window.background.background.background.background.dialog label { color: @FOREGROUND@; }
+
+window.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar),
+window.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar):backdrop,
+window.background.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar),
+window.background.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar):backdrop {
+    background-color: @BG_DIALOG@;
+    background-image: none;
+    color: @FOREGROUND@;
+    border: 1px solid @BORDER@;
+    border-radius: 12px;
+    box-shadow: none;
+}
+window.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar) > box,
+window.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar) > box:backdrop,
+window.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar) box,
+window.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar) grid {
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    border: none;
+}
+window.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar) button,
+window.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar) button:backdrop {
+    background-color: @BG_FIELD@;
+    background-image: none;
+    border: none;
+    border-radius: 8px;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+window.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar) button:hover { background-color: @ACCENT_ALPHA@; }
+window.background:not(.csd):not(.solid-csd):not(.popup):not(.tooltip):not(.dnd):not(.thunar) button:active { background-color: @ACCENT_STRONG@; }
+
+notebook,
+notebook:backdrop,
+notebook > stack,
+notebook > stack:backdrop,
+notebook > stack > box,
+notebook > stack > grid,
+notebook > stack > scrolledwindow,
+notebook > stack > scrolledwindow > viewport,
+notebook > stack > box > box,
+notebook > stack > box > grid,
+notebook > stack > box > scrolledwindow,
+notebook > stack > box > scrolledwindow > viewport,
+window.background notebook > stack,
+window.background.dialog notebook > stack,
+window.background.dialog notebook > stack > box,
+window.background.dialog notebook > stack > grid,
+window.background.dialog notebook > stack > scrolledwindow > viewport {
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+}
+notebook > stack,
+window.background notebook > stack {
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+    background-color: @BG_CONTENT@;
+}
+notebook > header,
+notebook > header:backdrop,
+notebook > header.top, notebook > header.top:backdrop {
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    border: none;
+}
+notebook > header > tabs > tab {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 8px;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+notebook > header > tabs > tab:hover { background-color: @ACCENT_ALPHA@; }
+notebook > header > tabs > tab:checked,
+notebook > header > tabs > tab:checked:backdrop {
+    background-color: @ACCENT_STRONG@;
+    color: @FOREGROUND@;
+    box-shadow: none;
+}
+
+window.background toolbar,
+window.background .toolbar,
+window.background box.toolbar,
+window.background toolbar:backdrop,
+window.background .toolbar:backdrop,
+window.background .primary-toolbar,
+window.background .inline-toolbar {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+window.background toolbar button,
+window.background .toolbar button {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 8px;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+window.background toolbar button:hover,
+window.background .toolbar button:hover { background-color: @ACCENT_ALPHA@; }
+window.background toolbar button:active,
+window.background .toolbar button:active { background-color: @ACCENT_STRONG@; }
+
+stackswitcher button,
+stackswitcher button:backdrop,
+window.aboutdialog stackswitcher button,
+window.background.dialog stackswitcher button {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 8px;
+    box-shadow: none;
+    text-shadow: none;
+    color: @FOREGROUND@;
+}
+stackswitcher button:hover,
+window.background.dialog stackswitcher button:hover { background-color: @ACCENT_ALPHA@; }
+stackswitcher button:checked,
+stackswitcher button:checked:backdrop,
+window.aboutdialog stackswitcher button:checked,
+window.background.dialog stackswitcher button:checked {
+    background-color: @ACCENT_STRONG@;
+    background-image: none;
+    color: @FOREGROUND@;
+    box-shadow: none;
+}
+window.aboutdialog scrolledwindow,
+window.aboutdialog scrolledwindow viewport,
+window.aboutdialog scrolledwindow viewport > box,
+window.aboutdialog scrolledwindow viewport > grid,
+window.aboutdialog textview,
+window.aboutdialog textview text,
+window.background.dialog scrolledwindow viewport > grid,
+window.background.dialog scrolledwindow viewport > box {
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+window.aboutdialog scrolledwindow {
+    background-color: @BG_CONTENT@;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+}
+window.aboutdialog box, window.aboutdialog stack, window.aboutdialog stack > box,
+window.aboutdialog .dialog-vbox {
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+}
+window.aboutdialog label { color: @FOREGROUND@; }
+
+link, *:link, *:visited, label link, label:link, label *:link {
+    color: @ACCENT_ALT@;
+}
+link:hover, *:link:hover { color: @FOREGROUND@; }
+
+window.background.background.dialog headerbar stackswitcher button,
+window.background.background.dialog headerbar stackswitcher button:backdrop,
+window.background.background.dialog headerbar.titlebar stackswitcher button,
+window.background.background.dialog .titlebar stackswitcher button,
+window.background.background.csd headerbar stackswitcher button,
+window.background.background.csd headerbar.titlebar stackswitcher button,
+window.background.background.csd .titlebar stackswitcher button:not(:checked),
+headerbar stackswitcher button:not(:checked),
+headerbar.titlebar stackswitcher button:not(:checked) {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 8px;
+    box-shadow: none;
+    outline: none;
+    text-shadow: none;
+    color: @FOREGROUND@;
+}
+window.background.background.dialog headerbar stackswitcher button:hover,
+window.background.background.csd headerbar stackswitcher button:hover,
+headerbar stackswitcher button:hover {
+    background-color: @ACCENT_ALPHA@;
+    background-image: none;
+}
+window.background.background.dialog headerbar stackswitcher button:checked,
+window.background.background.dialog headerbar stackswitcher button:checked:backdrop,
+window.background.background.dialog headerbar.titlebar stackswitcher button:checked,
+window.background.background.dialog .titlebar stackswitcher button:checked,
+window.background.background.csd headerbar stackswitcher button:checked,
+window.background.background.csd headerbar.titlebar stackswitcher button:checked,
+window.background.background.csd .titlebar stackswitcher button:checked,
+headerbar stackswitcher button:checked,
+headerbar.titlebar stackswitcher button:checked,
+headerbar stackswitcher button:checked:hover,
+headerbar stackswitcher button:checked:backdrop {
+    background-color: @ACCENT_STRONG@;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+
+window.background.background.dialog viewport,
+window.background.background.dialog viewport.view,
+window.background.background.dialog viewport > grid,
+window.background.background.dialog viewport > box,
+window.background.background.dialog scrolledwindow > viewport.view,
+window.background.background.dialog scrolledwindow > .view,
+window.background.background.dialog textview,
+window.background.background.dialog textview.view,
+window.background.background.dialog textview text,
+window.background.background.dialog textview.view text,
+window.background.background.csd viewport.view,
+window.background.background.csd viewport > grid,
+window.dialog viewport.view, window.dialog viewport > grid, window.dialog viewport > box {
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+window.background.background.dialog scrolledwindow {
+    background-color: @BG_CONTENT@;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+}
+
+window.background toolbar,
+dialog.background.background.background toolbar,
+window.background .toolbar,
+dialog.background.background.background .toolbar,
+window.background toolbar:backdrop,
+dialog.background.background.background toolbar:backdrop,
+window.background .toolbar:backdrop,
+dialog.background.background.background .toolbar:backdrop,
+window.background .inline-toolbar,
+dialog.background.background.background .inline-toolbar,
+window.background actionbar,
+dialog.background.background.background actionbar,
+window.background actionbar > revealer > box,
+dialog.background.background.background actionbar > revealer > box,
+window.background actionbar:backdrop,
+dialog.background.background.background actionbar:backdrop,
+window.background actionbar > revealer > box:backdrop,
+dialog.background.background.background actionbar > revealer > box:backdrop {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}window.background toolbar button,
+dialog.background.background.background toolbar button,
+window.background toolbar button:backdrop,
+dialog.background.background.background toolbar button:backdrop,
+window.background toolbar .flat,
+dialog.background.background.background toolbar .flat,
+window.background .inline-toolbar button,
+dialog.background.background.background .inline-toolbar button,
+window.background .inline-toolbar button:backdrop,
+dialog.background.background.background .inline-toolbar button:backdrop {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 8px;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}window.background toolbar button:hover,
+dialog.background.background.background toolbar button:hover,
+window.background .inline-toolbar button:hover,
+dialog.background.background.background .inline-toolbar button:hover { background-color: @ACCENT_ALPHA@; }window.background toolbar button:active,
+dialog.background.background.background toolbar button:active,
+window.background toolbar button:checked,
+dialog.background.background.background toolbar button:checked,
+window.background .inline-toolbar button:active,
+dialog.background.background.background .inline-toolbar button:active,
+window.background .inline-toolbar button:checked,
+dialog.background.background.background .inline-toolbar button:checked { background-color: @ACCENT_STRONG@; }window.background toolbar separator,
+dialog.background.background.background toolbar separator { background-color: @MUTED_ALPHA@; }
+
+window.background.background:not(.thunar) notebook,
+dialog.background.background.background notebook,
+window.background.background:not(.thunar) notebook:backdrop,
+dialog.background.background.background notebook:backdrop,
+window.background.background:not(.thunar) notebook > header,
+dialog.background.background.background notebook > header,
+window.background.background:not(.thunar) notebook > header:backdrop,
+dialog.background.background.background notebook > header:backdrop,
+window.background.background:not(.thunar) notebook > header > tabs,
+dialog.background.background.background notebook > header > tabs,
+window.background.background:not(.thunar) notebook > header > tabs > tab,
+dialog.background.background.background notebook > header > tabs > tab,
+window.background.background:not(.thunar) notebook > header > tabs > tab:backdrop,
+dialog.background.background.background notebook > header > tabs > tab:backdrop {
+    background-color: transparent;
+    background-image: none;
+    border-color: transparent;
+    box-shadow: none;
+    color: @SUBTEXT@;
+}window.background.background:not(.thunar) notebook > header > tabs > tab:hover,
+dialog.background.background.background notebook > header > tabs > tab:hover { background-color: @ACCENT_ALPHA@; border-radius: 8px; }window.background.background:not(.thunar) notebook > header > tabs > tab:checked,
+dialog.background.background.background notebook > header > tabs > tab:checked,
+window.background.background:not(.thunar) notebook > header > tabs > tab:checked:backdrop,
+dialog.background.background.background notebook > header > tabs > tab:checked:backdrop {
+    background-color: @BG_SELECT@;
+    border-radius: 8px;
+    color: @FOREGROUND@;
+}window.background.background:not(.thunar) notebook > stack,
+dialog.background.background.background notebook > stack,
+window.background.background:not(.thunar) notebook > stack:backdrop,
+dialog.background.background.background notebook > stack:backdrop {
+    background-color: @BG_CONTENT@;
+    background-image: none;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+    box-shadow: none;
+}window.background.background:not(.thunar) notebook > stack > *,
+dialog.background.background.background notebook > stack > *,
+window.background.background:not(.thunar) notebook > stack > *:backdrop,
+dialog.background.background.background notebook > stack > *:backdrop,
+window.background.background:not(.thunar) notebook > stack box,
+dialog.background.background.background notebook > stack box,
+window.background.background:not(.thunar) notebook > stack grid,
+dialog.background.background.background notebook > stack grid,
+window.background.background:not(.thunar) notebook > stack viewport,
+dialog.background.background.background notebook > stack viewport,
+window.background.background:not(.thunar) notebook > stack viewport:backdrop,
+dialog.background.background.background notebook > stack viewport:backdrop,
+window.background.background.dialog:not(.thunar) notebook scrolledwindow,
+window.background.background.dialog:not(.thunar) notebook scrolledwindow:backdrop {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}window.background.background:not(.thunar) notebook > stack label,
+dialog.background.background.background notebook > stack label { color: @FOREGROUND@; }window.background.background:not(.thunar) notebook > stack .dim-label,
+dialog.background.background.background notebook > stack .dim-label { color: @SUBTEXT@; }
+
+window.background.background:not(.thunar) notebook check,
+dialog.background.background.background notebook check,
+window.background.background:not(.thunar) notebook radio,
+dialog.background.background.background notebook radio {
+    background-color: @BG_FIELD@;
+    background-image: none;
+    border: 1px solid @BORDER@;
+    box-shadow: none;
+}window.background.background:not(.thunar) notebook check:checked,
+dialog.background.background.background notebook check:checked,
+window.background.background:not(.thunar) notebook radio:checked,
+dialog.background.background.background notebook radio:checked,
+window.background.background:not(.thunar) notebook check:indeterminate,
+dialog.background.background.background notebook check:indeterminate {
+    background-color: @ACCENT_ALT@;
+    border-color: @ACCENT_ALT@;
+    color: @BACKGROUND@;
+}window.background.background:not(.thunar) notebook combobox button,
+dialog.background.background.background notebook combobox button,
+window.background.background:not(.thunar) notebook combobox button:backdrop,
+dialog.background.background.background notebook combobox button:backdrop,
+window.background.background:not(.thunar) notebook spinbutton,
+dialog.background.background.background notebook spinbutton,
+window.background.background:not(.thunar) notebook entry,
+dialog.background.background.background notebook entry {
+    background-color: @BG_FIELD@;
+    background-image: none;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}window.background.background:not(.thunar) notebook combobox button:hover,
+dialog.background.background.background notebook combobox button:hover { background-color: @ACCENT_ALPHA@; }
+
+window.background:not(.thunar) .titlebar:not(headerbar),
+dialog.background.background.background .titlebar:not(headerbar),
+window.background:not(.thunar) .titlebar:not(headerbar):backdrop,
+dialog.background.background.background .titlebar:not(headerbar):backdrop,
+window.background:not(.thunar) toolbar.titlebar,
+dialog.background.background.background toolbar.titlebar,
+window.background:not(.thunar) toolbar.titlebar:backdrop,
+dialog.background.background.background toolbar.titlebar:backdrop,
+window.background:not(.thunar) box.titlebar,
+dialog.background.background.background box.titlebar,
+window.background:not(.thunar) box.titlebar:backdrop,
+dialog.background.background.background box.titlebar:backdrop {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 12px 12px 0 0;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}window.background:not(.thunar) .titlebar:not(headerbar) button,
+dialog.background.background.background .titlebar:not(headerbar) button,
+window.background:not(.thunar) .titlebar:not(headerbar) button:backdrop,
+dialog.background.background.background .titlebar:not(headerbar) button:backdrop,
+window.background:not(.thunar) .titlebar:not(headerbar) toolbutton > button,
+dialog.background.background.background .titlebar:not(headerbar) toolbutton > button {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 8px;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}window.background:not(.thunar) .titlebar:not(headerbar) button:hover,
+dialog.background.background.background .titlebar:not(headerbar) button:hover { background-color: @ACCENT_ALPHA@; }window.background:not(.thunar) .titlebar:not(headerbar) button:checked,
+dialog.background.background.background .titlebar:not(headerbar) button:checked,
+window.background:not(.thunar) .titlebar:not(headerbar) button:active,
+dialog.background.background.background .titlebar:not(headerbar) button:active { background-color: @ACCENT_STRONG@; }
+
+window.background:not(.thunar) viewport,
+dialog.background.background.background viewport,
+window.background:not(.thunar) viewport:backdrop,
+dialog.background.background.background viewport:backdrop,
+window.background:not(.thunar) viewport.view,
+dialog.background.background.background viewport.view,
+window.background:not(.thunar) viewport > grid,
+dialog.background.background.background viewport > grid,
+window.background:not(.thunar) viewport > box,
+dialog.background.background.background viewport > box,
+window.background:not(.thunar) viewport > grid:backdrop,
+dialog.background.background.background viewport > grid:backdrop,
+window.background:not(.thunar) viewport > box:backdrop,
+dialog.background.background.background viewport > box:backdrop,
+window.background:not(.thunar) scrolledwindow > viewport.frame,
+dialog.background.background.background scrolledwindow > viewport.frame,
+window.background:not(.thunar) scrolledwindow > .view,
+dialog.background.background.background scrolledwindow > .view {
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}window.background:not(.thunar) viewport label,
+dialog.background.background.background viewport label { color: @FOREGROUND@; }window.background:not(.thunar) viewport label link,
+dialog.background.background.background viewport label link,
+window.background:not(.thunar) viewport label:link,
+dialog.background.background.background viewport label:link { color: @ACCENT_ALT@; }
+
+window.background.background.background:not(.thunar) headerbar,
+dialog.background.background.background headerbar,
+window.background.background.background:not(.thunar) headerbar:backdrop,
+dialog.background.background.background headerbar:backdrop,
+window.background.background.background:not(.thunar) headerbar:not(:backdrop),
+dialog.background.background.background headerbar:not(:backdrop),
+window.background.background.background:not(.thunar) headerbar.titlebar,
+dialog.background.background.background headerbar.titlebar,
+window.background.background.background:not(.thunar) headerbar.titlebar:backdrop,
+dialog.background.background.background headerbar.titlebar:backdrop,
+window.background.background.background:not(.thunar) .titlebar,
+dialog.background.background.background .titlebar,
+window.background.background.background:not(.thunar) .titlebar:backdrop,
+dialog.background.background.background .titlebar:backdrop,
+window.background.background.background:not(.thunar) toolbar,
+dialog.background.background.background toolbar,
+window.background.background.background:not(.thunar) toolbar:backdrop,
+dialog.background.background.background toolbar:backdrop,
+window.background.background.background:not(.thunar) toolbar:not(:backdrop),
+dialog.background.background.background toolbar:not(:backdrop),
+window.background.background.background:not(.thunar) .toolbar,
+dialog.background.background.background .toolbar,
+window.background.background.background:not(.thunar) .toolbar:backdrop,
+dialog.background.background.background .toolbar:backdrop,
+window.background.background.background:not(.thunar) .primary-toolbar,
+dialog.background.background.background .primary-toolbar,
+window.background.background.background:not(.thunar) .primary-toolbar:backdrop,
+dialog.background.background.background .primary-toolbar:backdrop,
+window.background.background.background:not(.thunar) box.horizontal.toolbar,
+dialog.background.background.background box.horizontal.toolbar,
+window.background.background.background:not(.thunar) box.horizontal.toolbar:backdrop,
+dialog.background.background.background box.horizontal.toolbar:backdrop {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+
+window.background.background.background:not(.thunar) viewport,
+dialog.background.background.background viewport,
+window.background.background.background:not(.thunar) viewport:backdrop,
+dialog.background.background.background viewport:backdrop,
+window.background.background.background:not(.thunar) viewport.view,
+dialog.background.background.background viewport.view,
+window.background.background.background:not(.thunar) viewport > grid,
+dialog.background.background.background viewport > grid,
+window.background.background.background:not(.thunar) viewport > grid:backdrop,
+dialog.background.background.background viewport > grid:backdrop,
+window.background.background.background:not(.thunar) viewport > box,
+dialog.background.background.background viewport > box,
+window.background.background.background:not(.thunar) viewport > box:backdrop,
+dialog.background.background.background viewport > box:backdrop,
+window.background.background.background:not(.thunar) viewport > .view,
+dialog.background.background.background viewport > .view,
+window.background.background.background:not(.thunar) viewport > widget,
+dialog.background.background.background viewport > widget,
+window.background.background.background:not(.thunar) scrolledwindow > .view:not(:selected),
+dialog.background.background.background scrolledwindow > .view:not(:selected),
+window.background.background.background:not(.thunar) scrolledwindow > .view:backdrop:not(:selected),
+dialog.background.background.background scrolledwindow > .view:backdrop:not(:selected),
+window.background.background.background:not(.thunar) scrolledwindow.frame,
+dialog.background.background.background scrolledwindow.frame,
+window.background.background.background:not(.thunar) scrolledwindow.frame:backdrop,
+dialog.background.background.background scrolledwindow.frame:backdrop {
+    background-color: transparent;
+    background-image: none;
+    border-color: @BORDER@;
+    box-shadow: none;
+    color: @FOREGROUND@;
+}
+
+window.thunar .view:selected:hover,
+window.thunar .view:selected:hover:backdrop,
+window.thunar treeview.view:selected:hover,
+window.thunar treeview.view:selected:hover:backdrop,
+window.thunar .sidebar treeview.view:selected:hover,
+window.thunar .sidebar treeview.view:selected:hover:backdrop {
+    background-color: @BG_SELECT@;
+    background-image: none;
+    color: @FOREGROUND@;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+    box-shadow: none;
+}
+
+window.thunar iconview:selected:hover,
+window.thunar iconview:selected:hover:backdrop,
+window.thunar iconview.cell:selected:hover,
+window.thunar iconview.cell:selected:hover:backdrop {
+    background-color: @BG_SELECT_OVER_HOVER@;
+    background-image: none;
+    color: @FOREGROUND@;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+    box-shadow: none;
+}
+
+window.thunar iconview:hover:not(:selected):backdrop,
+window.thunar iconview.cell:hover:not(:selected):backdrop,
+window.thunar treeview.view:hover:not(:selected):backdrop {
+    background-color: @ACCENT_ALPHA@;
+    border-radius: 8px;
+}
+
+window.thunar paned > separator,
+window.thunar paned > separator:backdrop {
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    border-color: transparent;
+}
+
+window.thunar .sidebar treeview.view:not(:selected):not(:hover),
+window.thunar .sidebar treeview.view:not(:selected):not(:hover):backdrop,
+window.thunar .sidebar row:not(:selected):not(:hover),
+window.thunar .sidebar row:not(:selected):not(:hover):backdrop,
+window.thunar .sidebar viewport,
+window.thunar .sidebar scrolledwindow {
+    background-color: transparent;
+    background-image: none;
+}
+
+window.background.background.background:not(.csd):not(.thunar):not(.dialog) > frame,
+window.background.background.background:not(.csd):not(.thunar):not(.dialog) > frame:backdrop {
+    background-color: @BG_POPUP@;
+    background-image: none;
+    border: none;
+    border-radius: 8px;
+    padding: 0;
+    box-shadow: none;
+}
+
+window.background.background.background:not(.csd):not(.thunar):not(.dialog) > frame > border {
+    border: none;
+    background: transparent;
+}
+
+window.background.background.background:not(.csd):not(.thunar):not(.dialog) > frame > box > entry:only-child,
+window.background.background.background:not(.csd):not(.thunar):not(.dialog) > frame > box > entry:only-child:backdrop {
+    background-color: @BG_FIELD@;
+    background-image: none;
+    color: @FOREGROUND@;
+    caret-color: @FOREGROUND@;
+    border: 1px solid @BORDER@;
+    border-radius: 8px;
+    padding: 6px 10px;
+    min-height: 22px;
+    box-shadow: none;
+    outline: none;
+}
+
+window.background.background.background:not(.csd):not(.thunar):not(.dialog) > frame > box > entry:only-child:focus {
+    border-color: @ACCENT_ALT@;
+    box-shadow: none;
+}
+
+window.background.background.background:not(.csd):not(.thunar):not(.dialog) > frame > box > entry:only-child selection {
+    background-color: @BG_SELECT@;
+    color: @FOREGROUND@;
+}
+
+.thunar scrolledwindow .view.rubberband,
+.thunar scrolledwindow .view.rubberband:hover,
+.thunar scrolledwindow .view.rubberband:focus,
+.thunar scrolledwindow .view.rubberband:backdrop,
+.thunar .view.rubberband,
+.thunar scrolledwindow treeview.view rubberband,
+.thunar scrolledwindow .view rubberband {
+    background-color: @BG_SELECT@;
+    background-image: none;
+    border: 1px solid @ACCENT_ALT@;
+    border-radius: 4px;
+    box-shadow: none;
+    outline: none;
+}

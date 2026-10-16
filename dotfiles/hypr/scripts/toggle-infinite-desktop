@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+CORE="$HOME/.config/hypr/scripts/infinite-desktop/infinite_desktop_core.py"
+LOG="/tmp/infinite-desktop.log"
+
+if [[ ! -f "$CORE" ]]; then
+    notify-send "DoiZ" "Infinite Desktop is not installed" 2>/dev/null || true
+    exit 1
+fi
+
+mapfile -t PIDS < <(pgrep -f "[p]ython3[[:space:]]+$CORE([[:space:]]|$)" || true)
+
+if (( ${#PIDS[@]} > 0 )); then
+    kill "${PIDS[@]}" 2>/dev/null || true
+    notify-send "Infinite Desktop" "OFF" 2>/dev/null || true
+else
+    nohup python3 "$CORE" 1.6 > "$LOG" 2>&1 &
+    notify-send "Infinite Desktop" "ON" 2>/dev/null || true
+fi
+
+(sleep 0.15; qs -c keybinds ipc call keybinds refresh 2>/dev/null || true) &

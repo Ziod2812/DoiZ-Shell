@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+set -u
+
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+
+if command -v dbus-update-activation-environment >/dev/null 2>&1; then
+    dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE QT_QPA_PLATFORMTHEME >/dev/null 2>&1 || true
+fi
+
+start_fcitx5() {
+    pgrep -x fcitx5 >/dev/null 2>&1 && return 0
+    if command -v systemd-run >/dev/null 2>&1; then
+        setsid -f systemd-run --user --scope --quiet fcitx5 -d --replace </dev/null >/dev/null 2>&1 && return 0
+    fi
+    setsid -f fcitx5 -d --replace </dev/null >/dev/null 2>&1
+}
+
+start_once() {
+    local check="$1"
+    shift
+    pgrep -f "$check" >/dev/null 2>&1 || "$@" >/dev/null 2>&1 &
+}
+
+if command -v systemctl >/dev/null 2>&1; then
+    systemctl --user start --no-block pipewire.service pipewire-pulse.service wireplumber.service >/dev/null 2>&1 || true
+fi
+
+if command -v awww-daemon >/dev/null 2>&1 && ! awww query >/dev/null 2>&1; then
+    awww-daemon >/dev/null 2>&1 &
+fi
+
+if [ -x "$HOME/.config/hypr/scripts/restore-wallpaper.sh" ]; then
+    "$HOME/.config/hypr/scripts/restore-wallpaper.sh" >/dev/null 2>&1 &
+fi
+
+if [ -x "$HOME/.config/hypr/scripts/wallpaper-auto.sh" ]; then
+    "$HOME/.config/hypr/scripts/wallpaper-auto.sh" daemon >/dev/null 2>&1 &
+fi
+
+setsid -f "$HOME/.config/hypr/scripts/doiz-bar" >/dev/null 2>&1 </dev/null
+
+if ! grep -qs '^cava_desk=0' "$HOME/.config/mycfg/doiz-settings.env"; then
+    setsid -f qs -c cavadesk -n >/dev/null 2>&1 </dev/null
+fi
+
+"$HOME/.config/hypr/scripts/doiz-notifd" >/dev/null 2>&1 &
+
+(
+    sleep 1
+
+    start_fcitx5
+    sleep 2
+    fcitx5-remote -r >/dev/null 2>&1 || true
+    start_once 'wl-paste --type text --watch cliphist' wl-paste --type text --watch cliphist store
+    start_once 'wl-paste --type image --watch cliphist' wl-paste --type image --watch cliphist store
+    if ! pgrep -f 'polkit-(gnome|kde)-authentication-agent-1' >/dev/null 2>&1; then
+        if [ -x /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 ]; then
+            /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 >/dev/null 2>&1 &
+        elif [ -x /usr/lib/polkit-kde-authentication-agent-1 ]; then
+            /usr/lib/polkit-kde-authentication-agent-1 >/dev/null 2>&1 &
+        fi
+    fi
+
+    sleep 2
+
+    start_once 'hypridle' hypridle
+    start_once 'playerctld' playerctld daemon
+
+    if command -v gsettings >/dev/null 2>&1; then
+        gsettings set org.gnome.desktop.interface enable-animations false >/dev/null 2>&1 || true
+    fi
+
+) >/dev/null 2>&1 &

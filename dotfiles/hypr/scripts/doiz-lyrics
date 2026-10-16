@@ -1,0 +1,75 @@
+#!/usr/bin/env python3
+import hashlib
+import json
+import os
+import re
+import sys
+import urllib.parse
+import urllib.request
+from pathlib import Path
+
+CACHE = Path(os.environ.get("XDG_CACHE_HOME") or Path.home() / ".cache") / "doiz-lyrics"
+BASE = "https://lrclib.net/api"
+
+
+def clean(text):
+    text = re.sub(r"[\(\[].*?[\)\]]", "", text)
+    text = re.sub(r"(?i)\b(official|video|lyrics?|audio|hd|4k|mv)\b", "", text)
+    return re.sub(r"\s+", " ", text).strip(" -|")
+
+
+def fetch(path, params):
+    url = BASE + path + "?" + urllib.parse.urlencode(params)
+    req = urllib.request.Request(url, headers={"User-Agent": "DoiZ-media-popup/1.0"})
+    with urllib.request.urlopen(req, timeout=8) as r:
+        return json.loads(r.read().decode("utf-8"))
+
+
+def parse(lrc):
+    out = []
+    for line in lrc.splitlines():
+        m = re.match(r"^\[(\d+):(\d+(?:\.\d+)?)\](.*)$", line)
+        if m:
+            out.append([int(m.group(1)) * 60 + float(m.group(2)), m.group(3).strip()])
+    return out
+
+
+def main():
+    artist, title, album, duration = (sys.argv[1:5] + ["", "", "", "0"])[:4]
+    key = hashlib.sha1(f"{artist}|{title}".encode()).hexdigest()
+    CACHE.mkdir(parents=True, exist_ok=True)
+    cached = CACHE / (key + ".json")
+    if cached.exists():
+        print(cached.read_text())
+        return
+
+    result = {"synced": [], "plain": ""}
+    attempts = [
+        ("/get", {"artist_name": artist, "track_name": title, "album_name": album, "duration": int(float(duration or 0))}),
+        ("/get", {"artist_name": clean(artist), "track_name": clean(title)}),
+    ]
+    data = None
+    for path, params in attempts:
+        try:
+            data = fetch(path, params)
+            if data and (data.get("syncedLyrics") or data.get("plainLyrics")):
+                break
+            data = None
+        except Exception:
+            data = None
+    if data is None:
+        try:
+            found = fetch("/search", {"track_name": clean(title), "artist_name": clean(artist)})
+            if found:
+                data = found[0]
+        except Exception:
+            data = None
+
+    if data:
+        result["synced"] = parse(data.get("syncedLyrics") or "")
+        result["plain"] = data.get("plainLyrics") or ""
+        cached.write_text(json.dumps(result, ensure_ascii=False))
+    print(json.dumps(result, ensure_ascii=False))
+
+
+main()

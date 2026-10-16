@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+CONFIG_FILE="$SCRIPT_DIR/btop.conf"
+THEME_DIR="$SCRIPT_DIR/themes"
+
+export XDG_CONFIG_HOME="$(dirname "$SCRIPT_DIR")"
+
+mkdir -p "$THEME_DIR"
+
+if [[ ! -f "$CONFIG_FILE" ]]; then
+    touch "$CONFIG_FILE"
+fi
+
+if grep -qE '^[[:space:]]*color_theme[[:space:]]*=' "$CONFIG_FILE"; then
+    sed -i 's|^[[:space:]]*color_theme[[:space:]]*=.*|color_theme = "doiz"|' "$CONFIG_FILE"
+else
+    printf '\ncolor_theme = "doiz"\n' >> "$CONFIG_FILE"
+fi
+
+exec btop --config "$CONFIG_FILE"

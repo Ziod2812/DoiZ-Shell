@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -u
+
+if [ $# -eq 0 ]; then
+    set -- cycle
+fi
+
+exec python3 "${XDG_CONFIG_HOME:-$HOME/.config}/hypr/scripts/doiz-set" cavadesk "$@"

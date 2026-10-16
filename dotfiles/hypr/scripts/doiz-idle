@@ -1,0 +1,83 @@
+#!/usr/bin/env python3
+import os, re, subprocess, sys
+from pathlib import Path
+
+CONF = Path(os.environ.get("XDG_CONFIG_HOME", Path.home() / ".config")) / "hypr" / "hypridle.conf"
+INHIBIT = Path(os.environ.get("XDG_RUNTIME_DIR", "/tmp")) / "doiz-idle-inhibit.pid"
+
+HEAD = """general {
+    lock_cmd = $HOME/.config/hypr/scripts/lock.sh
+    before_sleep_cmd = loginctl lock-session
+    after_sleep_cmd = hyprctl dispatch dpms on
+    ignore_dbus_inhibit = false
+}
+"""
+LOCK = """
+# lock screen (Quickshell lockscreen)
+listener {
+    timeout = %d
+    on-timeout = loginctl lock-session
+}
+"""
+OFF = """
+# screen off
+listener {
+    timeout = %d
+    on-timeout = hyprctl dispatch dpms off
+    on-resume = hyprctl dispatch dpms on
+}
+"""
+SUSPEND = """
+listener {
+    timeout = %d
+    on-timeout = systemctl suspend
+}
+"""
+
+def read():
+    try:
+        txt = CONF.read_text()
+    except OSError:
+        return 0, 300, 600
+    v = {"lock": 0, "off": 0, "suspend": 0}
+    for blk in re.findall(r"listener\s*\{(.*?)\}", txt, re.S):
+        t = re.search(r"^\s*timeout\s*=\s*(\d+)", blk, re.M)
+        c = re.search(r"^\s*on-timeout\s*=\s*(.+)$", blk, re.M)
+        if not t or not c:
+            continue
+        c = c.group(1)
+        k = "lock" if "lock-session" in c else "off" if "dpms off" in c else "suspend" if "suspend" in c else None
+        if k:
+            v[k] = int(t.group(1))
+    return v["lock"], v["off"], v["suspend"]
+
+def main():
+    a = sys.argv[1:]
+    if not a or a[0] == "get":
+        l, o, s = read()
+        print(f"LOCK={l}\nOFF={o}\nSUSPEND={s}")
+        return
+    if a[0] == "set" and len(a) == 4:
+        lock, off, sus = (max(0, int(x)) for x in a[1:4])
+        if lock > 0:
+            lock = max(10, lock)
+        if off > 0:
+            off = max(off, lock + 1)
+        if sus > 0:
+            sus = max(sus, off + 1, lock + 1)
+        txt = HEAD
+        if lock > 0:
+            txt += LOCK % lock
+        if off > 0:
+            txt += OFF % off
+        if sus > 0:
+            txt += SUSPEND % sus
+        CONF.write_text(txt)
+        if not INHIBIT.exists():
+            subprocess.run(["pkill", "-x", "hypridle"])
+            subprocess.Popen(["hypridle"], stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL,
+                             stderr=subprocess.DEVNULL, start_new_session=True)
+        return
+    sys.exit("usage: doiz-idle get | set <lock_s> <off_s> <suspend_s>")
+
+main()

@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ "$#" -eq 0 ]; then
+    exit 0
+fi
+
+runtime_dir="${XDG_RUNTIME_DIR:-${XDG_STATE_HOME:-$HOME/.local/state}}"
+mkdir -p "$runtime_dir"
+lock_file="$runtime_dir/doiz-controlcenter.lock"
+
+call_ipc() {
+    if [ "$#" -gt 0 ]; then
+        qs -c controlcenter "$@"
+    fi
+}
+
+if qs -c controlcenter ipc show >/dev/null 2>&1; then
+    call_ipc "$@"
+    exit 0
+fi
+
+(
+    flock -n 9 || exit 0
+    if ! qs -c controlcenter ipc show >/dev/null 2>&1; then
+        qs -c controlcenter &
+    fi
+    for _ in $(seq 1 40); do
+        if qs -c controlcenter ipc show >/dev/null 2>&1; then
+            case " $* " in
+                *" toggle "*) ;;
+                *) call_ipc "$@" ;;
+            esac
+            exit 0
+        fi
+        sleep 0.05
+    done
+    exit 1
+) 9>"$lock_file"
