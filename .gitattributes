@@ -25,7 +25,7 @@ dotfiles/hypr/scripts/doiz-session linguist-language=Shell
 dotfiles/hypr/scripts/doiz-controlcenter linguist-language=Shell
 dotfiles/hypr/scripts/doiz-notifd linguist-language=Shell
 dotfiles/hypr/scripts/toggle-infinite-desktop linguist-language=Shell
-dotfiles/hypr/scripts/waybar-peek linguist-language=Shell
+dotfiles/hypr/scripts/bar-peek linguist-language=Shell
 dotfiles/btop/run-btop linguist-language=Shell
 
 dotfiles/hypr/scripts/infinite-desktop/** linguist-vendored
