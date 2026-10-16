@@ -1,0 +1,4 @@
+mpvpaper
+wlogout
+lavat-git
+bibata-cursor-theme-bin
