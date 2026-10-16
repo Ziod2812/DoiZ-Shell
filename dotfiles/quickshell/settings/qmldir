@@ -1,0 +1,17 @@
+module DoizSettings
+singleton Theme 1.0 Theme.qml
+Lbl 1.0 Lbl.qml
+GlowLbl 1.0 GlowLbl.qml
+Btn 1.0 Btn.qml
+Card 1.0 Card.qml
+Stat 1.0 Stat.qml
+Head 1.0 Head.qml
+Track 1.0 Track.qml
+Hero 1.0 Hero.qml
+Ctl 1.0 Ctl.qml
+KV 1.0 KV.qml
+Sw 1.0 Sw.qml
+Sld 1.0 Sld.qml
+Live 1.0 Live.qml
+SettingsPanel 1.0 SettingsPanel.qml
+GradBorder 1.0 GradBorder.qml

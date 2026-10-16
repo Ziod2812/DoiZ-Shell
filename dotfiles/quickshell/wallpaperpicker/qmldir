@@ -1,0 +1,4 @@
+module DoizWallpaperPicker
+singleton Theme 1.0 Theme.qml
+Glow 1.0 Glow.qml
+GradBorder 1.0 GradBorder.qml

@@ -1,0 +1,4 @@
+module DoizLauncher
+Launcher 1.0 Launcher.qml
+singleton Theme 1.0 Theme.qml
+GradBorder 1.0 GradBorder.qml
