@@ -1,0 +1,13 @@
+[SddmGreeterTheme]
+Name=DoiZ
+Description=DoiZ video login theme
+Author=DoiZ
+Type=sddm-theme
+Version=1.0
+Website=
+Screenshot=poster.jpg
+MainScript=Main.qml
+ConfigFile=theme.conf
+Theme-Id=doiz
+Theme-API=2.0
+QtVersion=6
