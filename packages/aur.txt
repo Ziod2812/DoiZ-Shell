@@ -1,4 +1,0 @@
-mpvpaper
-wlogout
-libcava
-waybar-cava
