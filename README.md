@@ -323,6 +323,7 @@ The clipboard uses `cliphist` + `wl-clipboard`, supports text and images, search
 ```
 DoiZ-Shell/
 ├── README.md
+├── LICENSE
 ├── install.sh
 ├── packages/
 │   ├── arch.txt
@@ -339,6 +340,7 @@ DoiZ-Shell/
 │   ├── hypr/
 │   │   ├── hyprland.lua
 │   │   ├── hypridle.conf
+│   │   ├── empty.png
 │   │   ├── config/
 │   │   ├── local/custom.lua
 │   │   └── scripts/
@@ -381,7 +383,13 @@ DoiZ-Shell/
 │   ├── gtk-3.0/
 │   ├── cursor/
 │   ├── mycfg/
-│   └── xdg-desktop-portal/
+│   ├── xdg-desktop-portal/
+│   ├── QtProject.conf
+│   ├── arkrc
+│   ├── code-flags.conf
+│   ├── discord-flags.conf
+│   ├── electron-flags.conf
+│   └── spotify-flags.conf
 ```
 
 </details>
