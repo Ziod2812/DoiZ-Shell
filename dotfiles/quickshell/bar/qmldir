@@ -1,0 +1,5 @@
+module DoizBar
+singleton Theme 1.0 Theme.qml
+Chip 1.0 Chip.qml
+Cava 1.0 Cava.qml
+ModeIcon 1.0 ModeIcon.qml
