@@ -1501,10 +1501,13 @@ Rectangle {
                     Image {
                         id: faceMain
                         anchors.fill: parent
+                        anchors.margins: 2
+                        mipmap: true
+                        smooth: true
                         visible: false
                         source: root.faceHome.length > 0 ? "file://" + root.faceHome + "/.face" : ""
-                        sourceSize.width: 208
-                        sourceSize.height: 208
+                        sourceSize.width: 160
+                        sourceSize.height: 160
                         fillMode: Image.PreserveAspectCrop
                         cache: false
                         layer.enabled: true
@@ -1513,10 +1516,13 @@ Rectangle {
                     Image {
                         id: faceAlt
                         anchors.fill: parent
+                        anchors.margins: 2
+                        mipmap: true
+                        smooth: true
                         visible: false
                         source: faceMain.status !== Image.Ready && root.faceIcon.length > 0 ? (root.faceIcon.indexOf("://") > 0 ? root.faceIcon : "file://" + root.faceIcon) : ""
-                        sourceSize.width: 208
-                        sourceSize.height: 208
+                        sourceSize.width: 160
+                        sourceSize.height: 160
                         fillMode: Image.PreserveAspectCrop
                         cache: false
                         layer.enabled: true
@@ -1525,17 +1531,23 @@ Rectangle {
                     Rectangle {
                         id: faceMask
                         anchors.fill: parent
+                        anchors.margins: 2
                         radius: width / 2
                         visible: false
                         layer.enabled: true
+                        layer.smooth: true
+                        layer.samples: 8
                     }
 
                     MultiEffect {
                         anchors.fill: parent
+                        anchors.margins: 2
                         source: faceMain.status === Image.Ready ? faceMain : faceAlt
                         visible: faceMain.status === Image.Ready || faceAlt.status === Image.Ready
                         maskEnabled: true
                         maskSource: faceMask
+                        maskThresholdMin: 0.5
+                        maskSpreadAtMin: 1.0
                     }
 
                     Rectangle {
