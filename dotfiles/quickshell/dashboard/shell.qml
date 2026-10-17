@@ -186,15 +186,27 @@ ShellRoot {
         root.viewYear = y
     }
 
-    readonly property var player: {
+    readonly property var playingNow: {
         var ps = Mpris.players.values
-
         for (var i = 0; i < ps.length; i++) {
             if (ps[i].isPlaying)
                 return ps[i]
         }
+        return null
+    }
 
-        return ps.length > 0 ? ps[0] : null
+    property var lastPlayer: null
+    onPlayingNowChanged: if (root.playingNow) root.lastPlayer = root.playingNow
+
+    readonly property var player: {
+        if (root.playingNow)
+            return root.playingNow
+        var ps = Mpris.players.values
+        for (var j = 0; j < ps.length; j++) {
+            if (String(ps[j].dbusName || "").toLowerCase().indexOf("spotify") >= 0)
+                return ps[j]
+        }
+        return null
     }
 
     readonly property int barCount: 30
@@ -700,11 +712,14 @@ ShellRoot {
                     id: face
 
                     anchors.fill: parent
+                    anchors.margins: 2
+                    mipmap: true
+                    smooth: true
                     source: "file://" + Quickshell.env("HOME") + "/.face"
                     fillMode: Image.PreserveAspectCrop
                     asynchronous: true
-                    sourceSize.width: 208
-                    sourceSize.height: 208
+                    sourceSize.width: 160
+                    sourceSize.height: 160
                     visible: false
                     layer.enabled: true
                 }
@@ -713,17 +728,23 @@ ShellRoot {
                     id: faceMask
 
                     anchors.fill: parent
+                    anchors.margins: 2
                     radius: width / 2
                     visible: false
                     layer.enabled: true
+                    layer.smooth: true
+                    layer.samples: 8
                 }
 
                 MultiEffect {
                     anchors.fill: parent
+                    anchors.margins: 2
                     source: face
                     visible: face.status === Image.Ready
                     maskEnabled: true
                     maskSource: faceMask
+                    maskThresholdMin: 0.5
+                    maskSpreadAtMin: 1.0
                 }
 
                 Rectangle {
